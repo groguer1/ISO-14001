@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2 — La norma ISO 14001:2015 | Curso ISO 14001</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+:root{--azul:#1A3A2C;--azul-mid:#2D6A4F;--azul-claro:#D8F3DC;--acento:#52B788;--acento-dark:#40916C;--rojo:#C0392B;--rojo-light:#FDECEA;--amarillo:#D97706;--amarillo-light:#FEF3C7;--gris-1:#F7F8FA;--gris-2:#E8EBF0;--gris-3:#9AA3B0;--texto:#1A1F2E;--radio:10px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--gris-1);color:var(--texto);font-size:16px;line-height:1.7;}
+.layout{display:flex;min-height:100vh;}
+.sidebar{width:280px;flex-shrink:0;background:var(--azul);color:#fff;padding:32px 0;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-logo{padding:0 24px 24px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:20px;}
+.badge{background:var(--acento);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:8px;}
+.sidebar-logo h2{font-family:'DM Serif Display',serif;font-size:17px;line-height:1.3;}
+.sidebar-logo p{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.sidebar-progress{padding:0 24px 20px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:20px;}
+.progress-label{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.progress-bar-bg{background:rgba(255,255,255,0.15);border-radius:4px;height:6px;}
+.progress-bar-fill{background:var(--acento);border-radius:4px;height:6px;width:18%;}
+.progress-pct{font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px;}
+.sidebar nav ul{list-style:none;}
+.sidebar nav ul li a{display:flex;align-items:center;gap:10px;padding:9px 24px;color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;transition:all 0.2s;border-left:3px solid transparent;}
+.sidebar nav ul li a.active{color:#fff;border-left-color:var(--acento);background:rgba(255,255,255,0.08);font-weight:600;}
+.sidebar nav ul li a.done{color:rgba(255,255,255,0.4);}
+.check{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;}
+.done .check{background:var(--acento);border-color:var(--acento);}
+.main{flex:1;padding:48px 56px;max-width:880px;}
+.modulo-eyebrow{font-size:12px;font-weight:600;color:var(--acento-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+h1{font-family:'DM Serif Display',serif;font-size:40px;line-height:1.2;color:var(--azul);margin-bottom:16px;}
+.modulo-intro{font-size:17px;color:#4A5568;max-width:660px;margin-bottom:20px;}
+.modulo-meta{display:flex;gap:24px;margin-bottom:40px;flex-wrap:wrap;}
+.meta-item{font-size:13px;color:var(--gris-3);}
+.seccion{margin-bottom:60px;}
+h2{font-family:'DM Serif Display',serif;font-size:28px;color:var(--azul);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gris-2);}
+h3{font-size:17px;font-weight:700;color:var(--texto);margin:28px 0 10px;}
+p{color:#374151;margin-bottom:14px;line-height:1.75;}
+ul,ol{margin:0 0 14px 20px;color:#374151;}
+ul li,ol li{margin-bottom:10px;line-height:1.6;}
+.callout{padding:20px 24px;border-radius:var(--radio);margin:24px 0;display:flex;gap:16px;}
+.callout.info{background:var(--azul-claro);border-left:4px solid var(--azul-mid);}
+.callout.alerta{background:var(--amarillo-light);border-left:4px solid var(--amarillo);}
+.callout.clave{background:#E0F2F1;border-left:4px solid var(--acento-dark);}
+.callout-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.callout-body strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;color:var(--azul);}
+.callout.alerta .callout-body strong{color:var(--amarillo);}
+.callout.clave .callout-body strong{color:var(--acento-dark);}
+.callout-body p{margin:0;font-size:14.5px;color:#374151;}
+.infografia-wrap{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);padding:32px;margin:28px 0;overflow-x:auto;}
+.infografia-titulo{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--gris-3);margin-bottom:24px;}
+.tabla-wrap{overflow-x:auto;margin:20px 0;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+th{background:var(--azul);color:#fff;padding:12px 16px;text-align:left;font-weight:600;}
+td{padding:11px 16px;border-bottom:1px solid var(--gris-2);vertical-align:top;}
+tr:nth-child(even) td{background:var(--gris-1);}
+tr:last-child td{border-bottom:none;}
+.clausulas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:24px 0;}
+.clausula-card{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);padding:18px;}
+.clausula-card.pdca-p{border-top:4px solid #1A3A2C;}
+.clausula-card.pdca-d{border-top:4px solid #E85820;}
+.clausula-card.pdca-c{border-top:4px solid #2D6A4F;}
+.clausula-card.pdca-a{border-top:4px solid #C0392B;}
+.clausula-card.pdca-x{border-top:4px solid #9AA3B0;}
+.clausula-num{font-size:11px;font-weight:700;color:var(--gris-3);margin-bottom:6px;}
+.clausula-card h4{font-size:13px;font-weight:700;color:var(--azul);margin-bottom:6px;}
+.clausula-card p{font-size:12px;color:#6B7280;margin:0;}
+.badge-pdca{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;margin-bottom:8px;}
+.badge-p{background:#D8F3DC;color:#1A3A2C;}
+.badge-d{background:#FDF0EB;color:#C44B15;}
+.badge-c{background:#E0F2F1;color:#2D6A4F;}
+.badge-a{background:#FDECEA;color:#C0392B;}
+.badge-x{background:#F7F8FA;color:#9AA3B0;}
+.auditor-tip{background:#1A1F2E;color:#fff;border-radius:var(--radio);padding:24px 28px;margin:24px 0;}
+.auditor-tip h4{font-size:14px;font-weight:700;color:var(--acento);margin-bottom:10px;}
+.auditor-tip p,.auditor-tip li{font-size:14px;color:rgba(255,255,255,0.85);line-height:1.7;}
+.auditor-tip ul{margin-left:20px;}
+.auditor-tip ul li{margin-bottom:6px;}
+.caso-practico{background:#fff;border:2px solid var(--acento);border-radius:var(--radio);padding:28px;margin:28px 0;}
+.caso-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.caso-badge{background:var(--acento);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px;text-transform:uppercase;}
+.caso-header h4{font-size:16px;font-weight:700;color:var(--acento-dark);margin:0;}
+.descargable{background:linear-gradient(135deg,var(--azul),var(--azul-mid));border-radius:var(--radio);padding:28px 32px;color:#fff;display:flex;align-items:center;gap:24px;margin:32px 0;}
+.descargable-icon{font-size:40px;flex-shrink:0;}
+.descargable-body h4{font-size:17px;font-weight:600;margin-bottom:6px;}
+.descargable-body p{font-size:13.5px;color:rgba(255,255,255,0.75);margin:0 0 16px;}
+.btn-dl{background:var(--acento);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;}
+.quiz-container{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);overflow:hidden;margin:32px 0;}
+.quiz-header{background:var(--azul);color:#fff;padding:20px 28px;display:flex;align-items:center;gap:12px;}
+.quiz-header h3{font-size:16px;font-weight:600;border:none;margin:0;padding:0;color:#fff;}
+.quiz-badge{background:var(--acento);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;margin-left:auto;}
+.quiz-body{padding:28px;}
+.pregunta{margin-bottom:32px;}
+.pregunta:last-child{margin-bottom:0;}
+.pregunta-num{font-size:11px;font-weight:600;color:var(--gris-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.pregunta h4{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--texto);}
+.opciones{display:flex;flex-direction:column;gap:10px;}
+.opcion{display:flex;align-items:center;gap:12px;padding:13px 16px;border:2px solid var(--gris-2);border-radius:8px;cursor:pointer;transition:all 0.15s;font-size:14px;color:var(--texto);}
+.opcion:hover{border-color:var(--azul-mid);background:var(--azul-claro);}
+.opcion-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--gris-2);flex-shrink:0;}
+.opcion.selected{border-color:var(--azul-mid);background:var(--azul-claro);}
+.opcion.selected .opcion-dot{background:var(--azul-mid);border-color:var(--azul-mid);}
+.opcion.correcta{border-color:var(--acento-dark);background:var(--azul-claro);}
+.opcion.correcta .opcion-dot{background:var(--acento-dark);border-color:var(--acento-dark);}
+.opcion.incorrecta{border-color:var(--rojo);background:var(--rojo-light);}
+.opcion.incorrecta .opcion-dot{background:var(--rojo);border-color:var(--rojo);}
+.feedback-pregunta{margin-top:12px;padding:12px 16px;border-radius:8px;font-size:13.5px;display:none;}
+.feedback-pregunta.ok{background:var(--azul-claro);color:#1A5C38;display:block;}
+.feedback-pregunta.ko{background:var(--rojo-light);color:#8B1A10;display:block;}
+.quiz-footer{padding:20px 28px;border-top:1px solid var(--gris-2);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.btn-quiz{background:var(--azul);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;}
+.btn-quiz:hover{background:var(--azul-mid);}
+.btn-quiz:disabled{background:var(--gris-3);cursor:not-allowed;}
+.quiz-resultado{font-size:14px;color:var(--gris-3);display:none;}
+.quiz-resultado.visible{display:block;}
+.modulo-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:32px;border-top:2px solid var(--gris-2);}
+.btn-nav{display:flex;align-items:center;gap:10px;padding:13px 24px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;}
+.btn-nav.siguiente{background:var(--azul);color:#fff;}
+.btn-nav.anterior{background:#fff;color:var(--azul);border:2px solid var(--gris-2);}
+@media(max-width:768px){.sidebar{display:none;}.main{padding:24px 20px;}h1{font-size:28px;}.clausulas-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="badge">ISO 14001:2015</div>
+    <h2>Consultor SGA<br>Certificado</h2>
+    <p>Sistema de Gestión Ambiental</p>
+  </div>
+  <div class="sidebar-progress">
+    <div class="progress-label">Progreso</div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+    <div class="progress-pct">Módulo 2 de 11</div>
+  </div>
+  <nav><ul>
+    <li><a href="iso14001-modulo1.html" class="done"><span class="check">✓</span> Fundamentos y Marco Legal</a></li>
+    <li><a href="#" class="active"><span class="check">2</span> La norma ISO 14001:2015</a></li>
+    <li><a href="#"><span class="check">3</span> Contexto y Partes Interesadas</a></li>
+    <li><a href="#"><span class="check">4</span> Aspectos e Impactos Ambientales</a></li>
+    <li><a href="#"><span class="check">5</span> Requisitos Legales y Cumplimiento</a></li>
+    <li><a href="#"><span class="check">6</span> Liderazgo, Política y Objetivos</a></li>
+    <li><a href="#"><span class="check">7</span> Soporte y Control Operacional</a></li>
+    <li><a href="#"><span class="check">8</span> Emergencias Ambientales</a></li>
+    <li><a href="#"><span class="check">9</span> Evaluación del Desempeño</a></li>
+    <li><a href="#"><span class="check">10</span> Integración ISO 9001+14001+45001</a></li>
+    <li><a href="#"><span class="check">11</span> Proyecto Final</a></li>
+  </ul></nav>
+</aside>
+<main class="main">
+  <div class="modulo-eyebrow">Módulo 2 de 11</div>
+  <h1>La norma ISO 14001:2015</h1>
+  <p class="modulo-intro">Anatomía completa de la norma con la perspectiva del auditor. No se trata de memorizar cláusulas sino de entender la lógica que conecta cada requisito con la prevención real del impacto ambiental.</p>
+  <div class="modulo-meta">
+    <span class="meta-item">⏱ 3 horas</span>
+    <span class="meta-item">✅ 12 preguntas</span>
+    <span class="meta-item">🗺️ Mapa completo de requisitos descargable</span>
+  </div>
+
+  <section class="seccion">
+    <h2>1. La lógica de ISO 14001: qué pregunta responde cada cláusula</h2>
+    <p>ISO 14001 está construida sobre una pregunta central: <strong>¿Cómo sabe la organización que está controlando realmente su impacto ambiental?</strong> Cada cláusula responde a una parte de esa pregunta:</p>
+    <ul>
+      <li><strong>Cláusulas 4-6 (Planificar):</strong> ¿Sabemos dónde estamos y qué queremos conseguir?</li>
+      <li><strong>Cláusulas 7-8 (Hacer):</strong> ¿Tenemos los medios y los controles para conseguirlo?</li>
+      <li><strong>Cláusula 9 (Verificar):</strong> ¿Estamos midiendo si lo estamos consiguiendo?</li>
+      <li><strong>Cláusula 10 (Actuar):</strong> ¿Aprendemos de lo que no funciona y mejoramos?</li>
+    </ul>
+    <div class="callout info">
+      <div class="callout-icon">🧠</div>
+      <div class="callout-body"><strong>La diferencia con ISO 9001 en la lógica de fondo</strong>
+      <p>ISO 9001 se pregunta si el cliente recibe lo que prometiste. ISO 14001 se pregunta si la organización controla el daño que causa al entorno. En ISO 9001 el cliente juzga la conformidad. En ISO 14001 el juez es el medio ambiente — y el medio ambiente no firma actas de aceptación. Por eso el enfoque de cumplimiento legal y la evaluación del desempeño ambiental real son mucho más críticos en ISO 14001.</p></div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>2. Las 10 cláusulas en detalle</h2>
+
+    <div class="clausulas-grid">
+      <div class="clausula-card pdca-x">
+        <div class="clausula-num">Cláusula 1</div>
+        <span class="badge-pdca badge-x">Introductoria</span>
+        <h4>Objeto y campo de aplicación</h4>
+        <p>Cualquier organización puede certificarse, independientemente de su tamaño, sector o impacto ambiental previo.</p>
+      </div>
+      <div class="clausula-card pdca-x">
+        <div class="clausula-num">Cláusula 2</div>
+        <span class="badge-pdca badge-x">Introductoria</span>
+        <h4>Referencias normativas</h4>
+        <p>No hay referencias normativas obligatorias en ISO 14001:2015.</p>
+      </div>
+      <div class="clausula-card pdca-x">
+        <div class="clausula-num">Cláusula 3</div>
+        <span class="badge-pdca badge-x">Introductoria</span>
+        <h4>Términos y definiciones</h4>
+        <p>33 términos específicos. Los más auditados: aspecto/impacto, significativo, ciclo de vida, condición ambiental.</p>
+      </div>
+      <div class="clausula-card pdca-p">
+        <div class="clausula-num">Cláusula 4</div>
+        <span class="badge-pdca badge-p">PLANIFICAR</span>
+        <h4>Contexto de la organización</h4>
+        <p>Análisis interno/externo, partes interesadas, alcance del SGA, condiciones ambientales.</p>
+      </div>
+      <div class="clausula-card pdca-p">
+        <div class="clausula-num">Cláusula 5</div>
+        <span class="badge-pdca badge-p">PLANIFICAR</span>
+        <h4>Liderazgo</h4>
+        <p>Compromiso de la dirección, política ambiental, roles y responsabilidades.</p>
+      </div>
+      <div class="clausula-card pdca-p">
+        <div class="clausula-num">Cláusula 6</div>
+        <span class="badge-pdca badge-p">PLANIFICAR</span>
+        <h4>Planificación</h4>
+        <p>Aspectos e impactos, requisitos legales, riesgos y oportunidades, objetivos ambientales.</p>
+      </div>
+      <div class="clausula-card pdca-d">
+        <div class="clausula-num">Cláusula 7</div>
+        <span class="badge-pdca badge-d">HACER</span>
+        <h4>Apoyo</h4>
+        <p>Recursos, competencia, toma de conciencia, comunicación interna y externa, información documentada.</p>
+      </div>
+      <div class="clausula-card pdca-d">
+        <div class="clausula-num">Cláusula 8</div>
+        <span class="badge-pdca badge-d">HACER</span>
+        <h4>Operación</h4>
+        <p>Control operacional de aspectos significativos, gestión del cambio, ciclo de vida, preparación ante emergencias.</p>
+      </div>
+      <div class="clausula-card pdca-c">
+        <div class="clausula-num">Cláusula 9</div>
+        <span class="badge-pdca badge-c">VERIFICAR</span>
+        <h4>Evaluación del desempeño</h4>
+        <p>Seguimiento y medición, evaluación del cumplimiento legal, auditoría interna, revisión por la dirección.</p>
+      </div>
+      <div class="clausula-card pdca-a">
+        <div class="clausula-num">Cláusula 10</div>
+        <span class="badge-pdca badge-a">ACTUAR</span>
+        <h4>Mejora</h4>
+        <p>No conformidades, acciones correctivas, mejora continua del desempeño ambiental.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>3. Las novedades clave de ISO 14001:2015 vs 2004</h2>
+    <p>Si tus clientes tienen el certificado de la versión 2004 (ya caducada) o vienen de esa experiencia, debes explicarles con precisión qué cambió y por qué la versión 2015 supone un salto cualitativo, no solo una actualización formal.</p>
+
+    <div class="tabla-wrap"><table>
+      <thead><tr><th>Elemento</th><th>ISO 14001:2004</th><th>ISO 14001:2015</th><th>Impacto en la implantación</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Estructura</strong></td><td>Propia — difícil de integrar</td><td>HLS — integrable con ISO 9001 e ISO 45001</td><td>Alto — facilita sistemas integrados</td></tr>
+        <tr><td><strong>Contexto organizacional</strong></td><td>No contemplado</td><td>Cláusula 4 completa — análisis interno/externo, condiciones ambientales</td><td>Alto — requiere análisis nuevo</td></tr>
+        <tr><td><strong>Liderazgo</strong></td><td>Representante de la dirección</td><td>Alta dirección directamente responsable</td><td>Medio — implica a la dirección de otra forma</td></tr>
+        <tr><td><strong>Perspectiva de ciclo de vida</strong></td><td>No contemplada</td><td>Obligatoria en identificación de aspectos</td><td>Alto — amplía el alcance del análisis</td></tr>
+        <tr><td><strong>Riesgos y oportunidades</strong></td><td>Solo aspectos y objetivos</td><td>Pensamiento basado en riesgos — riesgos Y oportunidades</td><td>Medio — nuevo proceso de planificación</td></tr>
+        <tr><td><strong>Comunicación externa</strong></td><td>Opcional</td><td>Proceso documentado obligatorio</td><td>Medio — requiere decidir qué comunicar y cómo</td></tr>
+        <tr><td><strong>Condiciones ambientales</strong></td><td>No contempladas</td><td>Parte del contexto — el entorno ambiental del emplazamiento</td><td>Medio — especialmente relevante en zonas sensibles</td></tr>
+        <tr><td><strong>Desempeño ambiental</strong></td><td>Foco en el sistema</td><td>Foco en los resultados reales — mejora del desempeño demostrable</td><td>Alto — el auditor busca mejoras medibles</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="auditor-tip">
+      <h4>🔍 El cambio que más no conformidades genera en transición</h4>
+      <p>La perspectiva de ciclo de vida es el elemento que más NC genera cuando una empresa viene de ISO 14001:2004. El análisis de aspectos existente solo cubre lo que ocurre dentro de la instalación. La versión 2015 exige considerar:</p>
+      <ul>
+        <li><strong>Aguas arriba:</strong> impactos de la extracción y producción de las materias primas que usas</li>
+        <li><strong>Uso del producto:</strong> impacto ambiental de tu producto cuando el cliente lo usa</li>
+        <li><strong>Fin de vida:</strong> qué pasa con tu producto cuando se desecha — ¿es reciclable? ¿genera residuos peligrosos?</li>
+      </ul>
+      <p>La norma no exige un ACV (Análisis de Ciclo de Vida) completo y formal — eso sería ISO 14040. Exige que la organización tenga en cuenta esta perspectiva al identificar sus aspectos ambientales.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>4. La cláusula 6: el núcleo técnico de la norma</h2>
+    <p>La cláusula 6 es donde ISO 14001 se diferencia de todas las demás normas de sistemas de gestión. Contiene los tres elementos técnicos más específicos de la gestión ambiental:</p>
+
+    <h3>6.1.1 — Riesgos y oportunidades</h3>
+    <p>Antes de identificar aspectos e impactos, la organización debe determinar los riesgos y oportunidades relacionados con el contexto y las partes interesadas que necesita abordar para:</p>
+    <ul>
+      <li>Asegurarse de que el SGA puede lograr sus resultados previstos</li>
+      <li>Prevenir o reducir los efectos no deseados, incluyendo la posibilidad de que el SGA sea afectado por condiciones ambientales externas</li>
+      <li>Lograr la mejora continua</li>
+    </ul>
+
+    <div class="callout alerta">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body"><strong>Confusión frecuente: riesgos del SGA vs riesgos ambientales</strong>
+      <p>La cláusula 6.1.1 habla de riesgos para el SGA (que el sistema no funcione), no de impactos ambientales. Los impactos se gestionan en la cláusula 6.1.2. Ejemplo: Un riesgo para el SGA sería que el técnico ambiental se vaya y nadie sepa gestionar los permisos. Un aspecto ambiental significativo sería el consumo de agua del proceso productivo. Son cosas distintas que se gestionan de forma distinta.</p></div>
+    </div>
+
+    <h3>6.1.2 — Aspectos ambientales</h3>
+    <p>Este es el corazón técnico de ISO 14001 y se desarrolla en profundidad en el Módulo 4. Los requisitos clave son:</p>
+    <ul>
+      <li>Identificar los aspectos ambientales de las actividades, productos y servicios <strong>bajo su control o influencia</strong></li>
+      <li>Considerar la <strong>perspectiva de ciclo de vida</strong></li>
+      <li>Considerar tanto las <strong>condiciones normales como anormales</strong> (arranque, parada, mantenimiento, emergencias)</li>
+      <li>Determinar cuáles son <strong>significativos</strong> mediante criterios documentados</li>
+    </ul>
+
+    <h3>6.1.3 — Requisitos legales y otros requisitos</h3>
+    <p>La organización debe identificar, tener acceso y actualizar los requisitos legales y voluntarios que aplican a sus aspectos ambientales. La evaluación del cumplimiento (9.1.2) verifica que los cumple. Es la cláusula con mayor impacto en la certificación si hay incumplimientos.</p>
+
+    <h3>6.2 — Objetivos ambientales</h3>
+    <p>Los objetivos deben ser coherentes con la política, medibles, monitorizados y comunicados. Deben considerar los aspectos significativos y los requisitos legales. La norma exige planificar cómo se van a lograr: qué se hará, con qué recursos, quién es responsable, cuándo se completará y cómo se evaluarán los resultados.</p>
+
+    <div class="infografia-wrap">
+      <div class="infografia-titulo">🔄 Flujo de la cláusula 6 — De los aspectos a los controles</div>
+      <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;">
+        <rect x="20" y="20" width="130" height="60" rx="8" fill="#D8F3DC" stroke="#2D6A4F" stroke-width="1.5"/>
+        <text x="85" y="45" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">CONTEXTO</text>
+        <text x="85" y="61" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#2D6A4F">Cláusula 4</text>
+        <polygon points="150,50 160,44 160,56" fill="#2D6A4F"/>
+        <line x1="150" y1="50" x2="165" y2="50" stroke="#2D6A4F" stroke-width="1.5"/>
+
+        <rect x="165" y="20" width="150" height="60" rx="8" fill="#D8F3DC" stroke="#2D6A4F" stroke-width="1.5"/>
+        <text x="240" y="43" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">IDENTIFICAR</text>
+        <text x="240" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#2D6A4F">Aspectos ambientales</text>
+        <text x="240" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#2D6A4F">C.6.1.2 — ciclo de vida</text>
+        <polygon points="315,50 325,44 325,56" fill="#2D6A4F"/>
+        <line x1="315" y1="50" x2="330" y2="50" stroke="#2D6A4F" stroke-width="1.5"/>
+
+        <rect x="330" y="20" width="150" height="60" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+        <text x="405" y="43" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">EVALUAR</text>
+        <text x="405" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#D97706">¿Significativo?</text>
+        <text x="405" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#D97706">Criterios documentados</text>
+        <polygon points="480,50 490,44 490,56" fill="#D97706"/>
+        <line x1="480" y1="50" x2="495" y2="50" stroke="#D97706" stroke-width="1.5"/>
+
+        <rect x="495" y="20" width="165" height="60" rx="8" fill="#FDECEA" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="577" y="43" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">SIGNIFICATIVOS</text>
+        <text x="577" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#C0392B">→ Controles obligatorios</text>
+        <text x="577" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#C0392B">→ Objetivos de mejora</text>
+
+        <line x1="240" y1="80" x2="240" y2="120" stroke="#2D6A4F" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <rect x="160" y="120" width="160" height="50" rx="8" fill="#E0F2F1" stroke="#2D6A4F" stroke-width="1.5"/>
+        <text x="240" y="141" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">REQUISITOS LEGALES</text>
+        <text x="240" y="157" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#2D6A4F">C.6.1.3 — registro actualizado</text>
+
+        <line x1="405" y1="80" x2="405" y2="120" stroke="#D97706" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <rect x="330" y="120" width="160" height="50" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+        <text x="410" y="141" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">OBJETIVOS</text>
+        <text x="410" y="157" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#D97706">C.6.2 — SMART + planificación</text>
+
+        <rect x="20" y="200" width="640" height="100" rx="10" fill="#fff" stroke="#E8EBF0" stroke-width="1.5"/>
+        <text x="340" y="225" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#1A3A2C">RESULTADO: ¿Qué genera un aspecto significativo?</text>
+        <text x="120" y="252" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#374151">Control operacional</text>
+        <text x="120" y="268" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#9AA3B0">(C.8.1)</text>
+        <text x="280" y="252" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#374151">Objetivo ambiental</text>
+        <text x="280" y="268" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#9AA3B0">(C.6.2)</text>
+        <text x="440" y="252" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#374151">Seguimiento/medición</text>
+        <text x="440" y="268" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#9AA3B0">(C.9.1)</text>
+        <text x="590" y="252" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#374151">Auditoría interna</text>
+        <text x="590" y="268" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#9AA3B0">(C.9.2)</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>5. La cláusula 8: control operacional y ciclo de vida</h2>
+    <p>La cláusula 8 es donde el SGA se materializa en el día a día de la operación. Tiene dos bloques principales:</p>
+
+    <h3>8.1 — Control operacional</h3>
+    <p>Los aspectos ambientales significativos requieren controles operacionales: procedimientos, instrucciones, criterios operativos, y en algunos casos controles sobre proveedores y contratistas. La norma exige considerar el ciclo de vida también en los controles:</p>
+    <ul>
+      <li><strong>Controles en el diseño:</strong> diseñar productos considerando su impacto ambiental en uso y fin de vida</li>
+      <li><strong>Controles en compras:</strong> comunicar requisitos ambientales a proveedores cuando sus productos o servicios tienen impacto en aspectos significativos</li>
+      <li><strong>Controles en la operación:</strong> procedimientos para las actividades asociadas a aspectos significativos</li>
+      <li><strong>Controles en distribución, uso y fin de vida:</strong> cuando sea relevante para los aspectos identificados</li>
+    </ul>
+
+    <h3>8.2 — Preparación y respuesta ante emergencias</h3>
+    <p>La organización debe establecer, implementar y mantener procesos para prepararse y responder ante situaciones de emergencia con impacto ambiental potencial. Esto incluye vertidos accidentales, incendios, explosiones y cualquier situación que pueda generar un impacto ambiental no controlado. Se desarrolla en profundidad en el Módulo 8.</p>
+
+    <div class="caso-practico">
+      <div class="caso-header">
+        <span class="caso-badge">Caso práctico</span>
+        <h4>Empresa textil — Control operacional del ciclo de vida</h4>
+      </div>
+      <p><strong>Situación:</strong> Una empresa textil identifica como aspecto significativo el uso de colorantes en el proceso de teñido. El análisis de ciclo de vida revela tres puntos críticos adicionales que la versión 2004 no habría captado:</p>
+      <ul>
+        <li><strong>Aguas arriba:</strong> sus proveedores de algodón usan pesticidas intensivos — la empresa decide incluir criterios ambientales en la selección de proveedores (certificación GOTS o equivalente)</li>
+        <li><strong>Uso del producto:</strong> el lavado de las prendas libera microfibras de poliéster — la empresa incluye instrucciones de lavado en el etiquetado para reducir este impacto</li>
+        <li><strong>Fin de vida:</strong> las prendas acaban en vertedero — la empresa lanza un programa de recogida de prendas usadas en colaboración con una ONG</li>
+      </ul>
+      <p><strong>Resultado:</strong> El SGA ahora gestiona impactos reales más allá de la fábrica. El auditor valora positivamente la perspectiva de ciclo de vida y la empresa mejora su posicionamiento ante clientes con compromisos ESG.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>6. La cláusula 9.1.2: evaluación del cumplimiento legal</h2>
+    <p>Esta subcláusula es exclusiva de ISO 14001 (no existe en ISO 9001) y es la que más diferencia al SGA de cualquier otro sistema de gestión. La organización debe evaluar periódicamente si cumple los requisitos legales y otros requisitos que ha identificado.</p>
+
+    <p><strong>Lo que la norma exige:</strong></p>
+    <ul>
+      <li>Determinar la frecuencia con la que se evaluará el cumplimiento</li>
+      <li>Evaluar el cumplimiento y tomar acciones si se detectan incumplimientos</li>
+      <li>Mantener el conocimiento y la comprensión de su estado de cumplimiento</li>
+      <li>Conservar información documentada como evidencia de los resultados de la evaluación</li>
+    </ul>
+
+    <div class="auditor-tip">
+      <h4>🔍 Cómo audita el cumplimiento legal el auditor externo</h4>
+      <ul>
+        <li>Pide el registro de requisitos legales y verifica que está actualizado</li>
+        <li>Cruza el registro con las autorizaciones vigentes — ¿tiene el cliente todas las autorizaciones que necesita?</li>
+        <li>Pide los últimos informes de autocontrol (emisiones, vertidos, residuos) y verifica que no se superan los límites autorizados</li>
+        <li>Pregunta cuándo fue la última evaluación formal de cumplimiento y qué resultado dio</li>
+        <li>Si detecta un incumplimiento durante la auditoría que el cliente no había identificado, es NC mayor automática — no solo por el incumplimiento en sí, sino porque el sistema de evaluación de cumplimiento no ha funcionado</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="descargable">
+    <div class="descargable-icon">🗺️</div>
+    <div class="descargable-body">
+      <h4>Mapa completo ISO 14001:2015 — Requisitos por cláusula y preguntas del auditor</h4>
+      <p>Tabla con los 50+ requisitos de la norma organizados por cláusula, con la pregunta exacta que hace el auditor y el tipo de evidencia que espera. Imprescindible para la preparación de auditorías.</p>
+      <button class="btn-dl" onclick="descargar()">⬇ Descargar mapa de requisitos</button>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <h3>Quiz del Módulo 2</h3><span class="quiz-badge">12 preguntas</span>
+    </div>
+    <div class="quiz-body">
+      <div class="pregunta" id="p1"><div class="pregunta-num">Pregunta 1 de 12</div>
+      <h4>¿A qué fase del ciclo PDCA corresponde la cláusula 6 de ISO 14001?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p1',true)"><div class="opcion-dot"></div>Planificar (P)</label>
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>Hacer (D)</label>
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>Verificar (C)</label>
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>Actuar (A)</label>
+      </div><div class="feedback-pregunta" id="fb1"></div></div>
+
+      <div class="pregunta" id="p2"><div class="pregunta-num">Pregunta 2 de 12</div>
+      <h4>¿Qué diferencia hay entre los "riesgos del SGA" (6.1.1) y los "aspectos ambientales" (6.1.2)?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>Son lo mismo — la norma los trata de forma equivalente</label>
+        <label class="opcion" onclick="sel(this,'p2',true)"><div class="opcion-dot"></div>Los riesgos del SGA son amenazas para que el sistema funcione; los aspectos son elementos de la actividad que interactúan con el medio ambiente</label>
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>Los aspectos son riesgos legales; los riesgos del SGA son riesgos operativos</label>
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>Solo los aspectos significativos se consideran riesgos del SGA</label>
+      </div><div class="feedback-pregunta" id="fb2"></div></div>
+
+      <div class="pregunta" id="p3"><div class="pregunta-num">Pregunta 3 de 12</div>
+      <h4>¿Cuántos términos y definiciones específicos contiene ISO 14001:2015?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>20</label>
+        <label class="opcion" onclick="sel(this,'p3',true)"><div class="opcion-dot"></div>33</label>
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>37</label>
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>50</label>
+      </div><div class="feedback-pregunta" id="fb3"></div></div>
+
+      <div class="pregunta" id="p4"><div class="pregunta-num">Pregunta 4 de 12</div>
+      <h4>¿Qué exige la perspectiva de ciclo de vida en la identificación de aspectos ambientales (6.1.2)?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Realizar un Análisis de Ciclo de Vida (ACV) completo según ISO 14040</label>
+        <label class="opcion" onclick="sel(this,'p4',true)"><div class="opcion-dot"></div>Considerar los impactos ambientales aguas arriba (proveedores) y aguas abajo (uso del producto, fin de vida), sin necesidad de ACV formal</label>
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Solo analizar los impactos dentro de las instalaciones de la organización</label>
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Certificar los productos con etiqueta ecológica europea</label>
+      </div><div class="feedback-pregunta" id="fb4"></div></div>
+
+      <div class="pregunta" id="p5"><div class="pregunta-num">Pregunta 5 de 12</div>
+      <h4>¿Qué subcláusula de ISO 14001 es exclusiva de esta norma y no tiene equivalente en ISO 9001?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>9.2 — Auditoría interna</label>
+        <label class="opcion" onclick="sel(this,'p5',true)"><div class="opcion-dot"></div>9.1.2 — Evaluación del cumplimiento legal y otros requisitos</label>
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>9.3 — Revisión por la dirección</label>
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>10.2 — No conformidades y acciones correctivas</label>
+      </div><div class="feedback-pregunta" id="fb5"></div></div>
+
+      <div class="pregunta" id="p6"><div class="pregunta-num">Pregunta 6 de 12</div>
+      <h4>¿Cuál es la principal diferencia en el enfoque entre ISO 9001 e ISO 14001?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>ISO 14001 es más fácil de implantar porque tiene menos cláusulas auditables</label>
+        <label class="opcion" onclick="sel(this,'p6',true)"><div class="opcion-dot"></div>En ISO 9001 el juez es el cliente; en ISO 14001 el juez es el medio ambiente — el cumplimiento legal y el desempeño real son más críticos</label>
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>ISO 14001 solo aplica a empresas industriales; ISO 9001 aplica a todas</label>
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>No hay diferencias de enfoque — ambas normas siguen el mismo modelo de gestión</label>
+      </div><div class="feedback-pregunta" id="fb6"></div></div>
+
+      <div class="pregunta" id="p7"><div class="pregunta-num">Pregunta 7 de 12</div>
+      <h4>¿Cuándo debe identificar aspectos ambientales la organización según la cláusula 6.1.2?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Solo en las condiciones normales de operación</label>
+        <label class="opcion" onclick="sel(this,'p7',true)"><div class="opcion-dot"></div>En condiciones normales, anormales (arranque, parada, mantenimiento) y de emergencia</label>
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Solo cuando ocurre un incidente ambiental</label>
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Una vez al año durante la revisión por la dirección</label>
+      </div><div class="feedback-pregunta" id="fb7"></div></div>
+
+      <div class="pregunta" id="p8"><div class="pregunta-num">Pregunta 8 de 12</div>
+      <h4>Durante la auditoría, el auditor detecta que la empresa supera el límite de vertidos autorizado en su AAI. ¿Qué registra?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>Una observación de mejora — los VLE son orientativos</label>
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>Una NC menor si el exceso es puntual</label>
+        <label class="opcion" onclick="sel(this,'p8',true)"><div class="opcion-dot"></div>Una NC mayor automática — el incumplimiento legal no admite graduación en ISO 14001</label>
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>Nada si la empresa ya ha notificado el incumplimiento a la autoridad</label>
+      </div><div class="feedback-pregunta" id="fb8"></div></div>
+
+      <div class="pregunta" id="p9"><div class="pregunta-num">Pregunta 9 de 12</div>
+      <h4>¿Qué novedad introdujo ISO 14001:2015 respecto a la comunicación externa?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>La obligación de publicar un informe ambiental anual</label>
+        <label class="opcion" onclick="sel(this,'p9',true)"><div class="opcion-dot"></div>La comunicación externa pasó de opcional a requerir un proceso documentado que determine qué comunicar, cuándo, a quién y cómo</label>
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>La obligación de responder a todas las consultas ambientales de la comunidad</label>
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>La comunicación externa sigue siendo completamente opcional en la versión 2015</label>
+      </div><div class="feedback-pregunta" id="fb9"></div></div>
+
+      <div class="pregunta" id="p10"><div class="pregunta-num">Pregunta 10 de 12</div>
+      <h4>¿Qué diferencia fundamental tiene la cláusula 8 de ISO 14001 respecto a la de ISO 9001?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>ISO 14001 no tiene cláusula 8 — es una diferencia estructural</label>
+        <label class="opcion" onclick="sel(this,'p10',true)"><div class="opcion-dot"></div>ISO 14001 incluye el control operacional del ciclo de vida — controles no solo en la producción sino en compras, diseño, distribución y fin de vida</label>
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>La cláusula 8 de ISO 14001 solo aplica a empresas industriales</label>
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>No hay diferencias — ambas cláusulas 8 tienen los mismos requisitos</label>
+      </div><div class="feedback-pregunta" id="fb10"></div></div>
+
+      <div class="pregunta" id="p11"><div class="pregunta-num">Pregunta 11 de 12</div>
+      <h4>¿Qué cambio de enfoque en el desempeño ambiental introdujo ISO 14001:2015 respecto a la versión 2004?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>La versión 2015 es menos exigente en materia de desempeño para facilitar la implantación en pymes</label>
+        <label class="opcion" onclick="sel(this,'p11',true)"><div class="opcion-dot"></div>La versión 2015 cambió el foco del sistema (tener documentos) al desempeño real y demostrable (mejorar los impactos ambientales)</label>
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>La versión 2015 eliminó los objetivos ambientales como requisito</label>
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>La versión 2015 introdujo el concepto de neutralidad de carbono como requisito</label>
+      </div><div class="feedback-pregunta" id="fb11"></div></div>
+
+      <div class="pregunta" id="p12"><div class="pregunta-num">Pregunta 12 de 12</div>
+      <h4>Una empresa tiene ISO 9001 y quiere añadir ISO 14001. ¿Qué elemento del SGA existente NO puede reutilizarse directamente?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>El sistema de auditoría interna</label>
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>El sistema de no conformidades y acciones correctivas</label>
+        <label class="opcion" onclick="sel(this,'p12',true)"><div class="opcion-dot"></div>La identificación de aspectos e impactos ambientales con perspectiva de ciclo de vida y la evaluación del cumplimiento legal ambiental</label>
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>La revisión por la dirección</label>
+      </div><div class="feedback-pregunta" id="fb12"></div></div>
+    </div>
+    <div class="quiz-footer">
+      <button class="btn-quiz" id="btnComprobar" onclick="comprobarQuiz()">Comprobar respuestas</button>
+      <button class="btn-quiz" id="btnReset" onclick="resetQuiz()" style="background:#fff;color:var(--azul);border:2px solid var(--gris-2);display:none;">Reintentar</button>
+      <span class="quiz-resultado" id="quizResultado"></span>
+    </div>
+  </div>
+
+  <div class="modulo-nav">
+    <a href="iso14001-modulo1.html" class="btn-nav anterior">← Módulo 1</a>
+    <a href="iso14001-modulo3.html" class="btn-nav siguiente">Módulo 3: Contexto y Partes Interesadas →</a>
+  </div>
+</main>
+</div>
+<script>
+const R={};
+const CI={p1:0,p2:1,p3:1,p4:1,p5:1,p6:1,p7:1,p8:2,p9:1,p10:1,p11:1,p12:2};
+const FB={
+  p1:{ok:'✅ Correcto. Las cláusulas 4, 5 y 6 corresponden a la fase P (Planificar) del ciclo PDCA. La cláusula 6 es el núcleo técnico de la planificación ambiental.',ko:'❌ Incorrecto. La cláusula 6 forma parte de la fase P (Planificar) junto con las cláusulas 4 y 5.'},
+  p2:{ok:'✅ Correcto. Los riesgos del SGA (6.1.1) son amenazas para que el sistema funcione correctamente. Los aspectos (6.1.2) son los elementos que interactúan con el medio ambiente. Son planos distintos.',ko:'❌ Incorrecto. Son conceptos distintos en planos distintos. Los riesgos del SGA se refieren al funcionamiento del sistema; los aspectos se refieren a la interacción de la actividad con el medio ambiente.'},
+  p3:{ok:'✅ Correcto. ISO 14001:2015 define 33 términos en la cláusula 3. Menos que ISO 45001 (37) pero más específicos del ámbito ambiental.',ko:'❌ Incorrecto. ISO 14001:2015 contiene 33 términos y definiciones en la cláusula 3.'},
+  p4:{ok:'✅ Correcto. La perspectiva de ciclo de vida no exige un ACV formal según ISO 14040. Exige considerar los impactos aguas arriba y abajo al identificar aspectos. La profundidad del análisis depende del control e influencia de la organización.',ko:'❌ Incorrecto. La norma no exige un ACV completo — eso sería desproporcionado para la mayoría de empresas. Exige considerar los impactos del ciclo de vida al identificar aspectos, con el nivel de detalle apropiado al control e influencia de la organización.'},
+  p5:{ok:'✅ Correcto. La cláusula 9.1.2 (evaluación del cumplimiento legal) es exclusiva de ISO 14001. En ISO 9001 no existe una cláusula equivalente — el cumplimiento legal se gestiona de forma mucho menos explícita.',ko:'❌ Incorrecto. La subcláusula exclusiva de ISO 14001 es la 9.1.2 (evaluación del cumplimiento legal). No tiene equivalente en ISO 9001 porque el cumplimiento ambiental legal es crítico y no puede dejarse implícito.'},
+  p6:{ok:'✅ Correcto. En ISO 9001 la conformidad la evalúa el cliente. En ISO 14001 el impacto ambiental no tiene "cliente" que evalúe — por eso el cumplimiento legal y el desempeño ambiental real son más críticos.',ko:'❌ Incorrecto. La diferencia fundamental es que en ISO 9001 hay un cliente que valida la conformidad. En ISO 14001 el medio ambiente no valida nada — por eso el cumplimiento legal y el desempeño son más críticos.'},
+  p7:{ok:'✅ Correcto. La norma exige identificar aspectos en condiciones normales, anormales (arranque, parada, mantenimiento) y de emergencia. Muchos accidentes ambientales ocurren precisamente en condiciones anormales.',ko:'❌ Incorrecto. La cláusula 6.1.2 exige identificar aspectos en las tres condiciones: normales, anormales (arranque, parada, mantenimiento) y de emergencia. Las condiciones anormales y de emergencia son donde más accidentes ambientales ocurren.'},
+  p8:{ok:'✅ Correcto. El incumplimiento de un límite establecido en la autorización es un incumplimiento legal. Eso es siempre NC mayor en ISO 14001, independientemente de la magnitud del exceso.',ko:'❌ Incorrecto. Superar un límite de vertido autorizado es un incumplimiento legal que genera NC mayor automática. No hay graduación posible: o se cumple el requisito legal o no se cumple.'},
+  p9:{ok:'✅ Correcto. En la versión 2004 la comunicación externa era opcional. En la versión 2015 la organización debe establecer un proceso documentado que determine qué comunicar sobre su SGA y cómo.',ko:'❌ Incorrecto. La comunicación externa pasó de opcional (2004) a requerir un proceso documentado (2015). La organización decide qué comunicar, pero debe tener un proceso para tomar esa decisión.'},
+  p10:{ok:'✅ Correcto. La cláusula 8 de ISO 14001 incluye el control operacional con perspectiva de ciclo de vida — controles en compras, diseño y fin de vida que no existen en ISO 9001.',ko:'❌ Incorrecto. La diferencia es la perspectiva de ciclo de vida en el control operacional: ISO 14001 exige considerar controles aguas arriba (compras, proveedores) y aguas abajo (diseño para el fin de vida).'},
+  p11:{ok:'✅ Correcto. La versión 2015 cambió el foco: de "tener el sistema documentado" a "demostrar mejora real del desempeño ambiental". El auditor busca que los indicadores ambientales mejoren con el tiempo.',ko:'❌ Incorrecto. La versión 2015 cambió el foco del sistema al desempeño. No basta con tener documentos — hay que demostrar mejora medible del impacto ambiental real.'},
+  p12:{ok:'✅ Correcto. La identificación de aspectos con perspectiva de ciclo de vida y la evaluación del cumplimiento legal ambiental son exclusivos de ISO 14001 — no existen en ISO 9001 y deben crearse desde cero.',ko:'❌ Incorrecto. El sistema de auditoría, NC/AC y revisión por la dirección pueden integrarse y ampliarse. Lo que no puede reutilizarse directamente es el análisis de aspectos ambientales con ciclo de vida y la evaluación del cumplimiento legal ambiental.'}
+};
+function sel(el,pid,ok){if(document.getElementById('btnComprobar').disabled)return;el.closest('.opciones').querySelectorAll('.opcion').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');R[pid]={idx:Array.from(el.closest('.opciones').children).indexOf(el),ok};}
+function comprobarQuiz(){const ps=['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12'];if(Object.keys(R).length<ps.length){alert('Responde todas las preguntas.');return;}let a=0;ps.forEach(pid=>{const r=R[pid];const ops=document.querySelectorAll('#'+pid+' .opcion');const fb=document.getElementById('fb'+pid.substring(1));ops.forEach(o=>o.style.pointerEvents='none');if(r.ok){ops[r.idx].classList.add('correcta');fb.className='feedback-pregunta ok';fb.textContent=FB[pid].ok;a++;}else{ops[r.idx].classList.add('incorrecta');ops[CI[pid]].classList.add('correcta');fb.className='feedback-pregunta ko';fb.textContent=FB[pid].ko;}});document.getElementById('btnComprobar').disabled=true;document.getElementById('btnComprobar').style.display='none';document.getElementById('btnReset').style.display='inline-block';const res=document.getElementById('quizResultado');res.classList.add('visible');const pct=Math.round(a/12*100);res.style.color=pct>=80?'var(--acento-dark)':pct>=60?'var(--amarillo)':'var(--rojo)';res.textContent=pct>=80?`🎉 ${a}/12 (${pct}%) — Dominas la estructura de la norma.`:pct>=60?`📖 ${a}/12 (${pct}%) — Repasa los puntos incorrectos.`:`🔄 ${a}/12 (${pct}%) — Vuelve a leer el módulo.`;}
+function resetQuiz(){Object.keys(R).forEach(k=>delete R[k]);document.querySelectorAll('.opcion').forEach(o=>{o.classList.remove('selected','correcta','incorrecta');o.style.pointerEvents='';});document.querySelectorAll('.feedback-pregunta').forEach(f=>{f.className='feedback-pregunta';f.textContent='';});document.getElementById('btnComprobar').disabled=false;document.getElementById('btnComprobar').style.display='';document.getElementById('btnReset').style.display='none';document.getElementById('quizResultado').classList.remove('visible');}
+function descargar(){const t=`MAPA COMPLETO ISO 14001:2015 — REQUISITOS Y PERSPECTIVA DEL AUDITOR\n${'='.repeat(60)}\n\nCLÁUSULA 4 — CONTEXTO\n4.1 Contexto interno y externo\nRequisito: Identificar factores ambientales internos y externos. Incluir condiciones ambientales del emplazamiento.\nPregunta auditor: "¿Han considerado las condiciones ambientales locales (calidad del aire, del agua subterránea) en su análisis de contexto?"\nEvidencia: Análisis de contexto con factores ambientales específicos, no genéricos\n\n4.2 Partes interesadas\nRequisito: Identificar partes interesadas con necesidades/expectativas ambientales\nPregunta auditor: "¿Qué esperan de ustedes la autoridad ambiental y la comunidad vecina?"\nEvidencia: Registro de partes interesadas con necesidades ambientales específicas\n\n4.3 Alcance del SGA\nRequisito: Determinar límites y aplicabilidad considerando aspectos e influencia\nPregunta auditor: "¿Por qué han excluido [actividad X] del alcance? ¿Tiene aspectos ambientales significativos?"\nEvidencia: Declaración de alcance justificada\n\n4.4 Sistema de gestión ambiental\nRequisito: Establecer, implementar, mantener y mejorar el SGA\nEvidencia: Mapa de procesos del SGA\n\nCLÁUSULA 5 — LIDERAZGO\n5.1 Liderazgo y compromiso\nRequisito: Dirección responsable de eficacia del SGA\nPregunta auditor (al director): "¿Cuáles son sus aspectos ambientales significativos? ¿Qué objetivos tienen para este año?"\nEvidencia: Director que conoce la política, aspectos y objetivos\n\n5.2 Política ambiental\nRequisito: Política apropiada al contexto, compromisos de cumplimiento legal, prevención de la contaminación y mejora continua\nPregunta auditor: "¿Puede mostrarme la política? ¿La conocen los trabajadores?"\nEvidencia: Política firmada, comunicada, con compromisos específicos\n\n5.3 Roles y responsabilidades\nRequisito: Asignar responsabilidades del SGA\nEvidencia: Organigrama SGA, responsable ambiental definido\n\nCLÁUSULA 6 — PLANIFICACIÓN ⭐ NÚCLEO TÉCNICO\n6.1.1 Riesgos y oportunidades del SGA\nRequisito: Identificar riesgos para el funcionamiento del SGA y oportunidades de mejora\nPregunta auditor: "¿Qué riesgos podrían impedir que su SGA logre sus objetivos?"\nEvidencia: Registro de riesgos y oportunidades del SGA (distinto de los aspectos ambientales)\n\n6.1.2 Aspectos ambientales ⭐⭐ CRÍTICO\nRequisito: Identificar aspectos en condiciones normales/anormales/emergencia, con perspectiva de ciclo de vida, determinar significativos\nPregunta auditor: "¿Cómo han considerado el fin de vida de sus productos? ¿Han identificado aspectos en condiciones de parada o mantenimiento?"\nEvidencia: Registro de aspectos con criterios de significatividad documentados, condiciones consideradas\n\n6.1.3 Requisitos legales ⭐⭐ CRÍTICO\nRequisito: Identificar y actualizar requisitos legales aplicables a los aspectos\nPregunta auditor: "¿Cuándo actualizaron por última vez el registro? ¿Quién es responsable del seguimiento normativo?"\nEvidencia: Registro actualizado con normativa UE, estatal y autonómica. Autorizaciones vigentes.\n\n6.2 Objetivos ambientales\nRequisito: Objetivos coherentes con aspectos significativos, medibles, planificados\nPregunta auditor: "¿Cuál es el objetivo ambiental del año? ¿Cómo lo están midiendo? ¿Van bien?"\nEvidencia: Objetivos SMART con indicador, meta, responsable, fecha y seguimiento\n\nCLÁUSULA 7 — APOYO\n7.1 Recursos\nRequisito: Recursos suficientes para el SGA\nEvidencia: Presupuesto ambiental, recursos humanos asignados\n\n7.2 Competencia\nRequisito: Personal competente para tareas con impacto ambiental\nPregunta auditor (al trabajador): "¿Sabe qué hacer si hay un derrame de producto químico?"\nEvidencia: Formación ambiental documentada, evaluación de eficacia\n\n7.3 Toma de conciencia\nRequisito: Personal conoce política, aspectos significativos y su contribución\nPregunta auditor (al trabajador): "¿Cuáles son los principales impactos ambientales de su trabajo?"\nEvidencia: Comunicaciones ambientales, charlas, reuniones documentadas\n\n7.4 Comunicación\nRequisito: Proceso documentado de comunicación interna y externa\nPregunta auditor: "¿Cómo deciden qué comunicar externamente sobre su SGA? ¿Qué han comunicado en el último año?"\nEvidencia: Plan de comunicación ambiental, registros de comunicaciones\n\n7.5 Información documentada\nRequisito: Mantener y controlar información del SGA\nEvidencia: Sistema de control documental, versiones actualizadas\n\nCLÁUSULA 8 — OPERACIÓN\n8.1 Control operacional con ciclo de vida\nRequisito: Controles para aspectos significativos, considerando ciclo de vida\nPregunta auditor: "Para el aspecto 'consumo de agua', ¿qué controles tienen? ¿Han comunicado requisitos ambientales a sus proveedores?"\nEvidencia: Procedimientos operativos ambientales, criterios a proveedores, instrucciones de operación\n\n8.2 Preparación y respuesta ante emergencias\nRequisito: Plan de emergencia ambiental, simulacros\nPregunta auditor: "¿Cuándo fue el último simulacro de derrame? ¿Puede mostrarme el registro?"\nEvidencia: Plan de emergencia ambiental actualizado, registros de simulacros\n\nCLÁUSULA 9 — EVALUACIÓN DEL DESEMPEÑO\n9.1.1 Seguimiento y medición\nRequisito: Medir indicadores ambientales relevantes\nPregunta auditor: "¿Pueden mostrarme la evolución de sus indicadores ambientales en los últimos 3 años?"\nEvidencia: KPIs ambientales con evolución temporal, análisis de tendencias\n\n9.1.2 Evaluación del cumplimiento legal ⭐⭐ CRÍTICO — EXCLUSIVO ISO 14001\nRequisito: Evaluar periódicamente el cumplimiento de requisitos legales y otros requisitos\nPregunta auditor: "¿Cuándo fue la última evaluación de cumplimiento? ¿Hay algún incumplimiento identificado?"\nEvidencia: Informe de evaluación de cumplimiento con resultado, acciones si procede\n\n9.2 Auditoría interna\nRequisito: Programa de auditorías internas\nPregunta auditor: "¿Los auditores internos tienen formación en ISO 14001 y legislación ambiental?"\nEvidencia: Programa, informes de auditoría, competencia de auditores\n\n9.3 Revisión por la dirección\nRequisito: Revisión periódica con entradas y salidas definidas\nPregunta auditor: "¿Qué decisiones tomó la dirección en la última revisión sobre el desempeño ambiental?"\nEvidencia: Acta con todas las entradas, decisiones con responsable y fecha\n\nCLÁUSULA 10 — MEJORA\n10.2 No conformidades y acciones correctivas\nRequisito: Investigar NC, causas raíz, acciones correctivas verificadas\nPregunta auditor: "Para esta NC ambiental, ¿cuál fue la causa raíz? ¿Han verificado que la acción correctiva ha funcionado?"\nEvidencia: Registros de NC con causa raíz, AC implementada, verificación de eficacia\n\n10.3 Mejora continua\nRequisito: Mejorar continuamente el desempeño ambiental\nPregunta auditor: "¿Pueden mostrarme ejemplos de mejora ambiental real en el último año?"\nEvidencia: Mejoras documentadas, evolución favorable de indicadores ambientales\n\n© Curso Consultor ISO 14001 — Todos los derechos reservados`;
+  const b=new Blob([t],{type:'text/plain;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='mapa-requisitos-iso14001-auditor.txt';a.click();URL.revokeObjectURL(u);}
+</script>
+</body>
+</html>

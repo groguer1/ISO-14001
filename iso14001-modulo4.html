@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 4 — Aspectos e Impactos Ambientales | Curso ISO 14001</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+:root{--azul:#1A3A2C;--azul-mid:#2D6A4F;--azul-claro:#D8F3DC;--acento:#52B788;--acento-dark:#40916C;--rojo:#C0392B;--rojo-light:#FDECEA;--amarillo:#D97706;--amarillo-light:#FEF3C7;--gris-1:#F7F8FA;--gris-2:#E8EBF0;--gris-3:#9AA3B0;--texto:#1A1F2E;--radio:10px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--gris-1);color:var(--texto);font-size:16px;line-height:1.7;}
+.layout{display:flex;min-height:100vh;}
+.sidebar{width:280px;flex-shrink:0;background:var(--azul);color:#fff;padding:32px 0;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-logo{padding:0 24px 24px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:20px;}
+.badge{background:var(--acento);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:8px;}
+.sidebar-logo h2{font-family:'DM Serif Display',serif;font-size:17px;line-height:1.3;}
+.sidebar-logo p{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.sidebar-progress{padding:0 24px 20px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:20px;}
+.progress-label{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.progress-bar-bg{background:rgba(255,255,255,0.15);border-radius:4px;height:6px;}
+.progress-bar-fill{background:var(--acento);border-radius:4px;height:6px;width:36%;}
+.progress-pct{font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px;}
+.sidebar nav ul{list-style:none;}
+.sidebar nav ul li a{display:flex;align-items:center;gap:10px;padding:9px 24px;color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;transition:all 0.2s;border-left:3px solid transparent;}
+.sidebar nav ul li a.active{color:#fff;border-left-color:var(--acento);background:rgba(255,255,255,0.08);font-weight:600;}
+.sidebar nav ul li a.done{color:rgba(255,255,255,0.4);}
+.check{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;}
+.done .check{background:var(--acento);border-color:var(--acento);}
+.main{flex:1;padding:48px 56px;max-width:880px;}
+.modulo-eyebrow{font-size:12px;font-weight:600;color:var(--acento-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+h1{font-family:'DM Serif Display',serif;font-size:40px;line-height:1.2;color:var(--azul);margin-bottom:16px;}
+.modulo-intro{font-size:17px;color:#4A5568;max-width:660px;margin-bottom:20px;}
+.modulo-meta{display:flex;gap:24px;margin-bottom:40px;flex-wrap:wrap;}
+.meta-item{font-size:13px;color:var(--gris-3);}
+.seccion{margin-bottom:60px;}
+h2{font-family:'DM Serif Display',serif;font-size:28px;color:var(--azul);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gris-2);}
+h3{font-size:17px;font-weight:700;color:var(--texto);margin:28px 0 10px;}
+p{color:#374151;margin-bottom:14px;line-height:1.75;}
+ul,ol{margin:0 0 14px 20px;color:#374151;}
+ul li,ol li{margin-bottom:10px;line-height:1.6;}
+.callout{padding:20px 24px;border-radius:var(--radio);margin:24px 0;display:flex;gap:16px;}
+.callout.info{background:var(--azul-claro);border-left:4px solid var(--azul-mid);}
+.callout.alerta{background:var(--amarillo-light);border-left:4px solid var(--amarillo);}
+.callout.clave{background:#E0F2F1;border-left:4px solid var(--acento-dark);}
+.callout-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.callout-body strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;color:var(--azul);}
+.callout.alerta .callout-body strong{color:var(--amarillo);}
+.callout.clave .callout-body strong{color:var(--acento-dark);}
+.callout-body p{margin:0;font-size:14.5px;color:#374151;}
+.infografia-wrap{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);padding:32px;margin:28px 0;overflow-x:auto;}
+.infografia-titulo{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--gris-3);margin-bottom:24px;}
+.tabla-wrap{overflow-x:auto;margin:20px 0;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+th{background:var(--azul);color:#fff;padding:12px 16px;text-align:left;font-weight:600;}
+td{padding:11px 16px;border-bottom:1px solid var(--gris-2);vertical-align:top;}
+tr:nth-child(even) td{background:var(--gris-1);}
+tr:last-child td{border-bottom:none;}
+.sig-cell{text-align:center;font-weight:700;font-size:13px;padding:8px;}
+.sig-alto{background:#FDECEA;color:#C0392B;}
+.sig-medio{background:#FEF3C7;color:#D97706;}
+.sig-bajo{background:#D8F3DC;color:#1A3A2C;}
+.caso-practico{background:#fff;border:2px solid var(--acento);border-radius:var(--radio);padding:28px;margin:28px 0;}
+.caso-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.caso-badge{background:var(--acento);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px;text-transform:uppercase;}
+.caso-header h4{font-size:16px;font-weight:700;color:var(--acento-dark);margin:0;}
+.auditor-tip{background:#1A1F2E;color:#fff;border-radius:var(--radio);padding:24px 28px;margin:24px 0;}
+.auditor-tip h4{font-size:14px;font-weight:700;color:var(--acento);margin-bottom:10px;}
+.auditor-tip p,.auditor-tip li{font-size:14px;color:rgba(255,255,255,0.85);line-height:1.7;}
+.auditor-tip ul{margin-left:20px;}
+.auditor-tip ul li{margin-bottom:6px;}
+.descargable{background:linear-gradient(135deg,var(--azul),var(--azul-mid));border-radius:var(--radio);padding:28px 32px;color:#fff;display:flex;align-items:center;gap:24px;margin:32px 0;}
+.descargable-icon{font-size:40px;flex-shrink:0;}
+.descargable-body h4{font-size:17px;font-weight:600;margin-bottom:6px;}
+.descargable-body p{font-size:13.5px;color:rgba(255,255,255,0.75);margin:0 0 16px;}
+.btn-dl{background:var(--acento);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;}
+.quiz-container{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);overflow:hidden;margin:32px 0;}
+.quiz-header{background:var(--azul);color:#fff;padding:20px 28px;display:flex;align-items:center;gap:12px;}
+.quiz-header h3{font-size:16px;font-weight:600;border:none;margin:0;padding:0;color:#fff;}
+.quiz-badge{background:var(--acento);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;margin-left:auto;}
+.quiz-body{padding:28px;}
+.pregunta{margin-bottom:32px;}
+.pregunta:last-child{margin-bottom:0;}
+.pregunta-num{font-size:11px;font-weight:600;color:var(--gris-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.pregunta h4{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--texto);}
+.opciones{display:flex;flex-direction:column;gap:10px;}
+.opcion{display:flex;align-items:center;gap:12px;padding:13px 16px;border:2px solid var(--gris-2);border-radius:8px;cursor:pointer;transition:all 0.15s;font-size:14px;color:var(--texto);}
+.opcion:hover{border-color:var(--azul-mid);background:var(--azul-claro);}
+.opcion-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--gris-2);flex-shrink:0;}
+.opcion.selected{border-color:var(--azul-mid);background:var(--azul-claro);}
+.opcion.selected .opcion-dot{background:var(--azul-mid);border-color:var(--azul-mid);}
+.opcion.correcta{border-color:var(--acento-dark);background:var(--azul-claro);}
+.opcion.correcta .opcion-dot{background:var(--acento-dark);border-color:var(--acento-dark);}
+.opcion.incorrecta{border-color:var(--rojo);background:var(--rojo-light);}
+.opcion.incorrecta .opcion-dot{background:var(--rojo);border-color:var(--rojo);}
+.feedback-pregunta{margin-top:12px;padding:12px 16px;border-radius:8px;font-size:13.5px;display:none;}
+.feedback-pregunta.ok{background:var(--azul-claro);color:#1A5C38;display:block;}
+.feedback-pregunta.ko{background:var(--rojo-light);color:#8B1A10;display:block;}
+.quiz-footer{padding:20px 28px;border-top:1px solid var(--gris-2);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.btn-quiz{background:var(--azul);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;}
+.btn-quiz:hover{background:var(--azul-mid);}
+.btn-quiz:disabled{background:var(--gris-3);cursor:not-allowed;}
+.quiz-resultado{font-size:14px;color:var(--gris-3);display:none;}
+.quiz-resultado.visible{display:block;}
+.modulo-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:32px;border-top:2px solid var(--gris-2);}
+.btn-nav{display:flex;align-items:center;gap:10px;padding:13px 24px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;}
+.btn-nav.siguiente{background:var(--azul);color:#fff;}
+.btn-nav.anterior{background:#fff;color:var(--azul);border:2px solid var(--gris-2);}
+@media(max-width:768px){.sidebar{display:none;}.main{padding:24px 20px;}h1{font-size:28px;}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="badge">ISO 14001:2015</div>
+    <h2>Consultor SGA<br>Certificado</h2>
+    <p>Sistema de Gestión Ambiental</p>
+  </div>
+  <div class="sidebar-progress">
+    <div class="progress-label">Progreso</div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+    <div class="progress-pct">Módulo 4 de 11</div>
+  </div>
+  <nav><ul>
+    <li><a href="iso14001-modulo1.html" class="done"><span class="check">✓</span> Fundamentos y Marco Legal</a></li>
+    <li><a href="iso14001-modulo2.html" class="done"><span class="check">✓</span> La norma ISO 14001:2015</a></li>
+    <li><a href="iso14001-modulo3.html" class="done"><span class="check">✓</span> Contexto y Partes Interesadas</a></li>
+    <li><a href="#" class="active"><span class="check">4</span> Aspectos e Impactos Ambientales</a></li>
+    <li><a href="#"><span class="check">5</span> Requisitos Legales y Cumplimiento</a></li>
+    <li><a href="#"><span class="check">6</span> Liderazgo, Política y Objetivos</a></li>
+    <li><a href="#"><span class="check">7</span> Soporte y Control Operacional</a></li>
+    <li><a href="#"><span class="check">8</span> Emergencias Ambientales</a></li>
+    <li><a href="#"><span class="check">9</span> Evaluación del Desempeño</a></li>
+    <li><a href="#"><span class="check">10</span> Integración ISO 9001+14001+45001</a></li>
+    <li><a href="#"><span class="check">11</span> Proyecto Final</a></li>
+  </ul></nav>
+</aside>
+<main class="main">
+  <div class="modulo-eyebrow">Módulo 4 de 11 — Cláusula 6.1.2</div>
+  <h1>Aspectos e Impactos Ambientales</h1>
+  <p class="modulo-intro">Este es el módulo más técnico y el más determinante del curso. La evaluación de aspectos e impactos es el cimiento sobre el que se construye todo el SGA. Si se hace mal aquí, todo lo demás es papel sin valor.</p>
+  <div class="modulo-meta">
+    <span class="meta-item">⏱ 3h 30min</span>
+    <span class="meta-item">✅ 12 preguntas</span>
+    <span class="meta-item">📋 Plantilla de evaluación de aspectos lista para usar</span>
+  </div>
+
+  <section class="seccion">
+    <h2>1. El proceso completo de identificación de aspectos</h2>
+    <p>La cláusula 6.1.2 exige un proceso sistemático, no una lista improvisada. El proceso tiene cuatro pasos que deben ejecutarse en orden:</p>
+    <ol>
+      <li><strong>Identificar las actividades, productos y servicios</strong> de la organización (dentro del alcance)</li>
+      <li><strong>Identificar los aspectos ambientales</strong> asociados a cada uno, en condiciones normales, anormales y de emergencia</li>
+      <li><strong>Identificar los impactos ambientales</strong> asociados a cada aspecto</li>
+      <li><strong>Determinar la significatividad</strong> de cada aspecto mediante criterios documentados</li>
+    </ol>
+
+    <div class="callout alerta">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body"><strong>El error que invalida toda la evaluación</strong>
+      <p>Confundir aspecto con impacto al rellenar la tabla. El aspecto es lo que la organización HACE o GENERA que interactúa con el medio ambiente. El impacto es la consecuencia en el medio ambiente. Si en la columna "aspecto" escribes "contaminación del suelo", has puesto el impacto donde va el aspecto. El aspecto sería "almacenamiento de productos químicos sin cubeto de contención". El auditor detecta esta confusión en la primera fila de la tabla.</p></div>
+    </div>
+
+    <h3>Las tres condiciones operativas que no puedes omitir</h3>
+    <p>Uno de los errores más frecuentes es identificar aspectos solo en condiciones normales de operación. La norma es explícita: debes considerar las tres condiciones:</p>
+    <ul>
+      <li><strong>Condiciones normales:</strong> operación habitual, producción estándar, funcionamiento diseñado</li>
+      <li><strong>Condiciones anormales:</strong> arranque, parada, mantenimiento, limpieza, cambios de turno, situaciones no rutinarias previstas</li>
+      <li><strong>Condiciones de emergencia:</strong> incendio, explosión, derrame accidental, fallo de sistemas de depuración, corte eléctrico</li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body"><strong>Por qué las condiciones anormales son las más peligrosas</strong>
+      <p>La mayoría de los accidentes ambientales graves ocurren durante arranques, paradas y operaciones de mantenimiento — no durante la operación normal. El arranque de una planta química genera emisiones no controladas que no se producen en operación continua. El mantenimiento de un depósito puede generar residuos que no aparecen en la operación normal. Si solo evalúas condiciones normales, tu evaluación de aspectos tiene un agujero enorme que el auditor encontrará.</p></div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>2. Metodología de evaluación de significatividad</h2>
+    <p>La norma no prescribe ninguna metodología específica para determinar qué aspectos son significativos. La organización debe establecer sus propios criterios, documentarlos y aplicarlos de forma consistente. Las dos metodologías más extendidas son la <strong>matriz de doble entrada</strong> y el <strong>sistema de puntuación ponderada</strong>.</p>
+
+    <h3>Método A — Matriz de doble entrada (sencillo, adecuado para pymes)</h3>
+    <p>Evalúa dos dimensiones: la <strong>severidad del impacto</strong> y la <strong>probabilidad/frecuencia</strong> del aspecto. El resultado determina si el aspecto es significativo:</p>
+
+    <div class="infografia-wrap">
+      <div class="infografia-titulo">📊 Matriz de significatividad — Severidad × Probabilidad</div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr>
+            <th style="background:var(--azul);color:#fff;padding:10px;text-align:center;">Severidad / Prob.</th>
+            <th style="background:var(--azul);color:#fff;padding:10px;text-align:center;">Baja (1)<br><small>Rara vez</small></th>
+            <th style="background:var(--azul);color:#fff;padding:10px;text-align:center;">Media (2)<br><small>Mensual</small></th>
+            <th style="background:var(--azul);color:#fff;padding:10px;text-align:center;">Alta (3)<br><small>Diaria/continua</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="background:var(--azul);color:#fff;padding:10px;font-weight:600;">Alta (3) — daño grave, irreversible</td>
+            <td class="sig-cell sig-medio">MEDIO (3)</td>
+            <td class="sig-cell sig-alto">ALTO (6)</td>
+            <td class="sig-cell sig-alto">MUY ALTO (9)</td>
+          </tr>
+          <tr>
+            <td style="background:var(--azul);color:#fff;padding:10px;font-weight:600;">Media (2) — daño moderado, recuperable</td>
+            <td class="sig-cell sig-bajo">BAJO (2)</td>
+            <td class="sig-cell sig-medio">MEDIO (4)</td>
+            <td class="sig-cell sig-alto">ALTO (6)</td>
+          </tr>
+          <tr>
+            <td style="background:var(--azul);color:#fff;padding:10px;font-weight:600;">Baja (1) — daño leve, temporal</td>
+            <td class="sig-cell sig-bajo">MUY BAJO (1)</td>
+            <td class="sig-cell sig-bajo">BAJO (2)</td>
+            <td class="sig-cell sig-medio">MEDIO (3)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--gris-3);margin-top:12px;">Significativo si puntuación ≥ 4 (recomendación) o ≥ 6 (criterio más restrictivo). La organización define el umbral.</p>
+    </div>
+
+    <h3>Método B — Sistema de puntuación ponderada (más completo, adecuado para industria)</h3>
+    <p>Evalúa múltiples criterios con pesos distintos. Los criterios más habituales son:</p>
+    <ul>
+      <li><strong>Magnitud/severidad del impacto</strong> (1-5): extensión y gravedad del daño ambiental</li>
+      <li><strong>Frecuencia/probabilidad</strong> (1-5): con qué frecuencia ocurre el aspecto</li>
+      <li><strong>Sensibilidad del entorno receptor</strong> (1-3): ¿hay ecosistemas sensibles, zonas protegidas cerca?</li>
+      <li><strong>Requisito legal</strong> (0 o 1 multiplicador): si está regulado legalmente, sube automáticamente la puntuación</li>
+      <li><strong>Percepción de las partes interesadas</strong> (1-3): ¿es un aspecto que preocupa a la comunidad o a las autoridades?</li>
+    </ul>
+
+    <div class="auditor-tip">
+      <h4>🔍 Lo que el auditor busca en la metodología de significatividad</h4>
+      <ul>
+        <li>Que existan criterios documentados — no puede ser subjetivo ni variable</li>
+        <li>Que los criterios se apliquen de forma consistente en toda la tabla</li>
+        <li>Que el umbral de significatividad esté definido y justificado</li>
+        <li>Que los aspectos con requisito legal tengan puntuación elevada automáticamente</li>
+        <li>Que las condiciones anormales y de emergencia estén incluidas</li>
+        <li>Que la perspectiva de ciclo de vida esté reflejada</li>
+        <li>Que el número de aspectos significativos sea razonable — ni todos ni ninguno</li>
+      </ul>
+      <p>Una empresa que tiene 50 aspectos y todos son significativos tiene un problema metodológico: la significatividad pierde sentido. Una empresa que tiene 50 aspectos y ninguno es significativo tiene un problema de honestidad: algo en el proceso falla.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>3. Tabla de aspectos e impactos: cómo se construye en la práctica</h2>
+    <p>La evaluación de aspectos e impactos se documenta en una tabla que recoge todos los elementos de la cláusula 6.1.2. Aquí tienes un ejemplo completo para una empresa de fabricación de piezas metálicas:</p>
+
+    <div class="tabla-wrap"><table>
+      <thead>
+        <tr>
+          <th>Actividad</th>
+          <th>Condición</th>
+          <th>Aspecto ambiental</th>
+          <th>Impacto ambiental</th>
+          <th>Sev.</th>
+          <th>Frec.</th>
+          <th>Puntos</th>
+          <th>Significativo</th>
+          <th>Control/objetivo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mecanizado de piezas</td>
+          <td>Normal</td>
+          <td>Generación de virutas metálicas</td>
+          <td>Agotamiento de recursos materiales</td>
+          <td style="text-align:center;">2</td>
+          <td style="text-align:center;">3</td>
+          <td class="sig-cell sig-alto">6 - ALTO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ</td>
+          <td>Contrato gestor valorización + objetivo % recuperación</td>
+        </tr>
+        <tr>
+          <td>Mecanizado de piezas</td>
+          <td>Normal</td>
+          <td>Consumo de taladrinas/aceites de corte</td>
+          <td>Agotamiento de recursos no renovables</td>
+          <td style="text-align:center;">2</td>
+          <td style="text-align:center;">3</td>
+          <td class="sig-cell sig-alto">6 - ALTO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ</td>
+          <td>Control consumo + evaluación alternativas más limpias</td>
+        </tr>
+        <tr>
+          <td>Mecanizado de piezas</td>
+          <td>Normal</td>
+          <td>Emisión de aerosoles de corte</td>
+          <td>Contaminación del aire interior/exterior</td>
+          <td style="text-align:center;">2</td>
+          <td style="text-align:center;">3</td>
+          <td class="sig-cell sig-alto">6 - ALTO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ</td>
+          <td>Sistema de extracción localizada + mantenimiento filtros</td>
+        </tr>
+        <tr>
+          <td>Tratamiento superficial</td>
+          <td>Normal</td>
+          <td>Vertido de aguas con metales pesados</td>
+          <td>Contaminación aguas superficiales/subterráneas</td>
+          <td style="text-align:center;">3</td>
+          <td style="text-align:center;">3</td>
+          <td class="sig-cell sig-alto">9 - MUY ALTO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ</td>
+          <td>Depuradora + autorización vertidos + autocontroles</td>
+        </tr>
+        <tr>
+          <td>Tratamiento superficial</td>
+          <td>Normal</td>
+          <td>Generación de lodos de depuradora (RP)</td>
+          <td>Contaminación del suelo por gestión incorrecta</td>
+          <td style="text-align:center;">3</td>
+          <td style="text-align:center;">2</td>
+          <td class="sig-cell sig-alto">6 - ALTO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ</td>
+          <td>Gestor RP autorizado + registros documentados</td>
+        </tr>
+        <tr>
+          <td>Pintura/lacado</td>
+          <td>Normal</td>
+          <td>Emisión de COV (compuestos orgánicos volátiles)</td>
+          <td>Contaminación atmosférica, contribución al smog</td>
+          <td style="text-align:center;">2</td>
+          <td style="text-align:center;">3</td>
+          <td class="sig-cell sig-alto">6 - ALTO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ</td>
+          <td>Cabina de pintura homologada + registro emisiones COV</td>
+        </tr>
+        <tr>
+          <td>Instalaciones generales</td>
+          <td>Normal</td>
+          <td>Consumo de energía eléctrica</td>
+          <td>Agotamiento de recursos, emisiones indirectas CO₂</td>
+          <td style="text-align:center;">2</td>
+          <td style="text-align:center;">3</td>
+          <td class="sig-cell sig-alto">6 - ALTO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ</td>
+          <td>Plan eficiencia energética + objetivo reducción %</td>
+        </tr>
+        <tr>
+          <td>Instalaciones generales</td>
+          <td>Normal</td>
+          <td>Consumo de agua proceso</td>
+          <td>Agotamiento recurso hídrico</td>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:center;">3</td>
+          <td class="sig-cell sig-medio">3 - MEDIO</td>
+          <td style="text-align:center;color:var(--gris-3);">NO</td>
+          <td>Monitorizar consumo mensual</td>
+        </tr>
+        <tr>
+          <td>Mantenimiento</td>
+          <td>Anormal</td>
+          <td>Generación de aceites usados (RP)</td>
+          <td>Contaminación suelo/agua por gestión incorrecta</td>
+          <td style="text-align:center;">3</td>
+          <td style="text-align:center;">1</td>
+          <td class="sig-cell sig-medio">3 - MEDIO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ*</td>
+          <td>*Requislto legal → significativo por criterio legal. Gestor RP.</td>
+        </tr>
+        <tr>
+          <td>Emergencia</td>
+          <td>Emergencia</td>
+          <td>Derrame accidental de productos químicos</td>
+          <td>Contaminación suelo y aguas subterráneas</td>
+          <td style="text-align:center;">3</td>
+          <td style="text-align:center;">1</td>
+          <td class="sig-cell sig-medio">3 - MEDIO</td>
+          <td style="text-align:center;font-weight:700;color:var(--rojo);">SÍ*</td>
+          <td>*Severidad alta → significativo. Plan de emergencias ambiental</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <div class="callout clave">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-body"><strong>La regla de oro de los aspectos de emergencia</strong>
+      <p>Los aspectos en condiciones de emergencia tienen probabilidad baja pero severidad alta. Muchas metodologías les dan puntuación baja por la baja probabilidad y quedan fuera de los significativos. Error grave: un derrame accidental puede generar una catástrofe ambiental aunque ocurra una vez cada diez años. La buena práctica es considerar significativo cualquier aspecto de emergencia con severidad alta, independientemente de su probabilidad — y gestionarlo con un plan de emergencias ambiental.</p></div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>4. La perspectiva de ciclo de vida en la práctica</h2>
+    <p>Como ya introdujimos en el Módulo 2, ISO 14001:2015 exige considerar la perspectiva de ciclo de vida. Aquí vemos cómo se traduce esto en aspectos concretos para distintos sectores:</p>
+
+    <div class="tabla-wrap"><table>
+      <thead><tr><th>Etapa del ciclo de vida</th><th>Aspectos típicos</th><th>Cómo gestiona la organización (influencia)</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Extracción/producción de materias primas (aguas arriba)</strong></td>
+          <td>Huella hídrica de materias primas, uso de pesticidas en proveedores agrícolas, emisiones de extracción minera</td>
+          <td>Criterios ambientales en selección de proveedores, certificaciones exigidas (FSC, RSPO, GOTS), auditorías a proveedores</td>
+        </tr>
+        <tr>
+          <td><strong>Diseño del producto</strong></td>
+          <td>Uso de materiales reciclados, diseño para desmontaje, contenido de sustancias peligrosas</td>
+          <td>Criterios de ecodiseño en el proceso de I+D, sustitución de sustancias SVHC (REACH)</td>
+        </tr>
+        <tr>
+          <td><strong>Producción propia</strong></td>
+          <td>Todos los identificados en la tabla de aspectos anterior</td>
+          <td>Control operacional directo — la organización tiene control total</td>
+        </tr>
+        <tr>
+          <td><strong>Distribución y transporte</strong></td>
+          <td>Emisiones de CO₂ del transporte, packaging, logística inversa</td>
+          <td>Optimización de rutas, criterios al transportista, packaging reciclable</td>
+        </tr>
+        <tr>
+          <td><strong>Uso del producto por el cliente</strong></td>
+          <td>Consumo energético durante el uso, emisiones de VOC de pinturas/adhesivos, liberación de microplásticos</td>
+          <td>Etiquetado ambiental, instrucciones de uso eficiente, ficha de seguridad</td>
+        </tr>
+        <tr>
+          <td><strong>Fin de vida</strong></td>
+          <td>Reciclabilidad, presencia de sustancias peligrosas, generación de residuos electrónicos</td>
+          <td>Participación en SCRAP (sistemas colectivos), marcado de materiales, diseño para reciclaje</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="seccion">
+    <h2>5. Los aspectos significativos y sus consecuencias obligatorias</h2>
+    <p>Una vez determinados los aspectos significativos, la norma exige acciones específicas sobre ellos. No son opcionales:</p>
+    <ul>
+      <li><strong>Control operacional (C.8.1):</strong> procedimientos, instrucciones y criterios operativos para gestionar el aspecto</li>
+      <li><strong>Comunicación interna (C.7.4):</strong> el personal que gestiona el aspecto debe conocerlo y saber cómo actuar</li>
+      <li><strong>Toma de conciencia (C.7.3):</strong> los trabajadores deben saber cuáles son los aspectos significativos relevantes para su trabajo</li>
+      <li><strong>Competencia (C.7.2):</strong> el personal debe estar formado para gestionar los aspectos significativos de su puesto</li>
+      <li><strong>Seguimiento y medición (C.9.1):</strong> los aspectos significativos deben tener indicadores de desempeño</li>
+    </ul>
+    <p>Opcionalmente, pero muy recomendable:</p>
+    <ul>
+      <li><strong>Objetivos ambientales (C.6.2):</strong> establecer objetivos de mejora para los aspectos significativos más importantes</li>
+      <li><strong>Programa de gestión:</strong> plan de acción con acciones, responsables, recursos y plazos para lograr los objetivos</li>
+    </ul>
+
+    <div class="caso-practico">
+      <div class="caso-header">
+        <span class="caso-badge">Caso práctico</span>
+        <h4>Empresa de artes gráficas — Revisión de aspectos tras cambio de proceso</h4>
+      </div>
+      <p><strong>Situación:</strong> Una empresa de impresión offset (papel, tintas de base solvente, placas de aluminio) decide sustituir la tecnología offset por impresión digital de alta velocidad. Tiene ISO 14001 desde 2018 y su evaluación de aspectos no ha sido revisada.</p>
+      <p><strong>Nuevos aspectos que aparecen con la tecnología digital:</strong></p>
+      <ul>
+        <li>Generación de cartuchos y tóner vacíos (residuos peligrosos — nuevo)</li>
+        <li>Consumo energético de equipos digitales de alta potencia (aumenta)</li>
+        <li>Residuos electrónicos de equipos sustituidos (nuevo)</li>
+      </ul>
+      <p><strong>Aspectos que desaparecen con la tecnología digital:</strong></p>
+      <ul>
+        <li>Consumo de disolventes para limpieza de planchas (desaparece)</li>
+        <li>Generación de reveladores fotográficos (desaparece)</li>
+        <li>Emisión de COV de tintas offset (se reduce drásticamente)</li>
+      </ul>
+      <p><strong>Conclusión para el SGA:</strong> El cambio de tecnología es exactamente la situación que requiere una revisión completa de la evaluación de aspectos e impactos. La cláusula 6.1.2 exige que la organización actualice la evaluación cuando cambian las condiciones de operación. No actualizar la evaluación tras este cambio generaría una NC mayor en la siguiente auditoría por tener aspectos no identificados (cartuchos, RAEE) sin gestión documentada.</p>
+    </div>
+  </section>
+
+  <div class="descargable">
+    <div class="descargable-icon">📋</div>
+    <div class="descargable-body">
+      <h4>Plantilla completa de evaluación de aspectos e impactos ambientales</h4>
+      <p>Tabla Excel-ready con columnas para actividad, condición, aspecto, impacto, criterios de significatividad (severidad, frecuencia, sensibilidad del entorno, requisito legal) y columna de control. Incluye 30 aspectos de ejemplo para industria, construcción y servicios.</p>
+      <button class="btn-dl" onclick="descargar()">⬇ Descargar plantilla</button>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <h3>Quiz del Módulo 4</h3><span class="quiz-badge">12 preguntas</span>
+    </div>
+    <div class="quiz-body">
+
+      <div class="pregunta" id="p1"><div class="pregunta-num">Pregunta 1 de 12</div>
+      <h4>En la tabla de aspectos, una empresa escribe en la columna "Aspecto ambiental": "Contaminación del suelo por aceite". ¿Qué ha hecho mal?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>Nada — es una descripción válida del aspecto</label>
+        <label class="opcion" onclick="sel(this,'p1',true)"><div class="opcion-dot"></div>Ha confundido aspecto con impacto — "Contaminación del suelo" es el impacto; el aspecto sería "Almacenamiento de aceite sin cubeto de contención"</label>
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>Ha omitido la condición operativa (normal/anormal/emergencia)</label>
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>Ha mezclado un aspecto con un requisito legal</label>
+      </div><div class="feedback-pregunta" id="fb1"></div></div>
+
+      <div class="pregunta" id="p2"><div class="pregunta-num">Pregunta 2 de 12</div>
+      <h4>¿Por qué la mayoría de los accidentes ambientales graves ocurren en condiciones anormales y no en condiciones normales?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>Porque las condiciones anormales están menos reguladas legalmente</label>
+        <label class="opcion" onclick="sel(this,'p2',true)"><div class="opcion-dot"></div>Porque durante arranques, paradas y mantenimiento se generan aspectos que no existen en operación normal y los controles habituales no están activos</label>
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>Porque el personal está menos formado para condiciones anormales</label>
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>No hay diferencia — los accidentes se distribuyen uniformemente entre todos los tipos de condición</label>
+      </div><div class="feedback-pregunta" id="fb2"></div></div>
+
+      <div class="pregunta" id="p3"><div class="pregunta-num">Pregunta 3 de 12</div>
+      <h4>Una empresa industrial tiene 80 aspectos identificados y todos resultan significativos. ¿Qué problema señalaría el auditor?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>Ninguno — cuantos más significativos, más robusto el SGA</label>
+        <label class="opcion" onclick="sel(this,'p3',true)"><div class="opcion-dot"></div>Problema metodológico — si todos son significativos, el concepto pierde sentido y los recursos se dispersan sin priorización real</label>
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>Que la empresa tiene demasiados impactos ambientales y necesita reducir actividad</label>
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>Que los criterios de significatividad son demasiado restrictivos</label>
+      </div><div class="feedback-pregunta" id="fb3"></div></div>
+
+      <div class="pregunta" id="p4"><div class="pregunta-num">Pregunta 4 de 12</div>
+      <h4>¿Qué criterio adicional hace que un aspecto sea significativo independientemente de su puntuación en la matriz?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Que sea visible para los vecinos de la instalación</label>
+        <label class="opcion" onclick="sel(this,'p4',true)"><div class="opcion-dot"></div>Que esté regulado por un requisito legal específico — el cumplimiento legal eleva automáticamente la significatividad</label>
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Que haya generado una queja de alguna parte interesada en el último año</label>
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Que ocurra con frecuencia diaria</label>
+      </div><div class="feedback-pregunta" id="fb4"></div></div>
+
+      <div class="pregunta" id="p5"><div class="pregunta-num">Pregunta 5 de 12</div>
+      <h4>¿Qué ocurre obligatoriamente con los aspectos identificados como significativos?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>Deben comunicarse públicamente en la web de la empresa</label>
+        <label class="opcion" onclick="sel(this,'p5',true)"><div class="opcion-dot"></div>Requieren controles operacionales, comunicación al personal, formación específica y seguimiento con indicadores</label>
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>Deben notificarse a la autoridad ambiental en 30 días</label>
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>Solo deben incluirse en el informe anual de revisión por la dirección</label>
+      </div><div class="feedback-pregunta" id="fb5"></div></div>
+
+      <div class="pregunta" id="p6"><div class="pregunta-num">Pregunta 6 de 12</div>
+      <h4>¿Por qué un derrame accidental (condición de emergencia) debe considerarse significativo aunque su probabilidad sea muy baja?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>Porque la normativa obliga a incluir todas las condiciones de emergencia como significativas</label>
+        <label class="opcion" onclick="sel(this,'p6',true)"><div class="opcion-dot"></div>Porque la severidad alta del impacto potencial justifica gestionarlo con un plan de emergencias, independientemente de la baja probabilidad</label>
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>Porque los seguros solo cubren incidentes gestionados como significativos</label>
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>Para cumplir el requisito de tener al menos un aspecto de emergencia en el registro</label>
+      </div><div class="feedback-pregunta" id="fb6"></div></div>
+
+      <div class="pregunta" id="p7"><div class="pregunta-num">Pregunta 7 de 12</div>
+      <h4>En el ejemplo de la empresa de artes gráficas, ¿por qué la sustitución de offset por digital genera una NC si no se actualiza la evaluación de aspectos?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Porque ISO 14001 exige notificar los cambios tecnológicos a la autoridad ambiental</label>
+        <label class="opcion" onclick="sel(this,'p7',true)"><div class="opcion-dot"></div>Porque la norma exige que la evaluación de aspectos se actualice cuando cambian las condiciones de operación — nuevos aspectos sin identificar equivalen a riesgos sin gestionar</label>
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Porque el organismo certificador debe aprobar cualquier cambio tecnológico</label>
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Solo genera NC si el auditor detecta el cambio — si no lo detecta, no hay problema</label>
+      </div><div class="feedback-pregunta" id="fb7"></div></div>
+
+      <div class="pregunta" id="p8"><div class="pregunta-num">Pregunta 8 de 12</div>
+      <h4>¿Qué diferencia al "Método A" (matriz doble entrada) del "Método B" (puntuación ponderada) para evaluar significatividad?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>Solo el Método A está aceptado por ISO 14001 — el Método B no cumple la norma</label>
+        <label class="opcion" onclick="sel(this,'p8',true)"><div class="opcion-dot"></div>El Método A evalúa dos criterios (severidad y frecuencia); el Método B evalúa múltiples criterios con pesos distintos. Ambos son válidos si están documentados</label>
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>El Método B es obligatorio para empresas con más de 50 trabajadores</label>
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>El Método A es para aspectos normales; el Método B para aspectos de emergencia</label>
+      </div><div class="feedback-pregunta" id="fb8"></div></div>
+
+      <div class="pregunta" id="p9"><div class="pregunta-num">Pregunta 9 de 12</div>
+      <h4>¿Cómo gestiona una empresa de alimentación el aspecto ambiental del uso de pesticidas por sus proveedores agrícolas?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>No puede gestionarlo porque está fuera de su control y alcance</label>
+        <label class="opcion" onclick="sel(this,'p9',true)"><div class="opcion-dot"></div>A través de la perspectiva de ciclo de vida: incluyendo criterios ambientales en la selección de proveedores o exigiendo certificaciones como GLOBALG.A.P.</label>
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>Incluyendo los campos de cultivo de proveedores en el alcance del SGA</label>
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>Comunicándolo a la autoridad ambiental como aspecto significativo externo</label>
+      </div><div class="feedback-pregunta" id="fb9"></div></div>
+
+      <div class="pregunta" id="p10"><div class="pregunta-num">Pregunta 10 de 12</div>
+      <h4>¿Cuál es el primer paso del proceso de evaluación de aspectos e impactos?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>Determinar cuáles son significativos con la metodología elegida</label>
+        <label class="opcion" onclick="sel(this,'p10',true)"><div class="opcion-dot"></div>Identificar las actividades, productos y servicios de la organización dentro del alcance del SGA</label>
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>Identificar los impactos ambientales de la empresa</label>
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>Revisar la legislación ambiental aplicable</label>
+      </div><div class="feedback-pregunta" id="fb10"></div></div>
+
+      <div class="pregunta" id="p11"><div class="pregunta-num">Pregunta 11 de 12</div>
+      <h4>¿Qué son los SCRAP en el contexto del fin de vida de productos?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>Residuos metálicos generados en procesos de mecanizado</label>
+        <label class="opcion" onclick="sel(this,'p11',true)"><div class="opcion-dot"></div>Sistemas Colectivos de Responsabilidad Ampliada del Productor — organizaciones que gestionan el fin de vida de ciertos productos (envases, eléctricos, pilas)</label>
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>Sistemas de Control y Registro de Aspectos y Procesos</label>
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>Certificaciones de calidad de gestores de residuos autorizados</label>
+      </div><div class="feedback-pregunta" id="fb11"></div></div>
+
+      <div class="pregunta" id="p12"><div class="pregunta-num">Pregunta 12 de 12</div>
+      <h4>¿Cuándo debe actualizarse la evaluación de aspectos e impactos ambientales?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>Solo anualmente durante la revisión por la dirección</label>
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>Solo cuando la autoridad ambiental lo solicite</label>
+        <label class="opcion" onclick="sel(this,'p12',true)"><div class="opcion-dot"></div>Siempre que cambien las condiciones de operación: nuevos procesos, productos, instalaciones, cambios legales o incidentes significativos</label>
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>Cada 3 años, coincidiendo con la renovación del certificado</label>
+      </div><div class="feedback-pregunta" id="fb12"></div></div>
+
+    </div>
+    <div class="quiz-footer">
+      <button class="btn-quiz" id="btnComprobar" onclick="comprobarQuiz()">Comprobar respuestas</button>
+      <button class="btn-quiz" id="btnReset" onclick="resetQuiz()" style="background:#fff;color:var(--azul);border:2px solid var(--gris-2);display:none;">Reintentar</button>
+      <span class="quiz-resultado" id="quizResultado"></span>
+    </div>
+  </div>
+
+  <div class="modulo-nav">
+    <a href="iso14001-modulo3.html" class="btn-nav anterior">← Módulo 3</a>
+    <a href="iso14001-modulo5.html" class="btn-nav siguiente">Módulo 5: Requisitos Legales →</a>
+  </div>
+</main>
+</div>
+<script>
+const R={};
+const CI={p1:1,p2:1,p3:1,p4:1,p5:1,p6:1,p7:1,p8:1,p9:1,p10:1,p11:1,p12:2};
+const FB={
+  p1:{ok:'✅ Correcto. "Contaminación del suelo" es el IMPACTO. El aspecto es la actividad o condición que lo puede causar: "almacenamiento de aceite sin cubeto de contención". Esta confusión aspecto/impacto es el error más frecuente en la tabla.',ko:'❌ Incorrecto. "Contaminación del suelo" es el IMPACTO (el efecto en el medio ambiente), no el aspecto (la causa). El aspecto sería algo como "almacenamiento de aceite sin sistemas de contención".'},
+  p2:{ok:'✅ Correcto. En arranques, paradas y mantenimiento se generan emisiones, residuos y riesgos que no existen en operación normal. Los sistemas de control pueden estar desconectados y el personal puede no seguir los procedimientos habituales.',ko:'❌ Incorrecto. Las condiciones anormales generan aspectos distintos a los de operación normal (emisiones de arranque, residuos de limpieza de equipos) y los controles habituales pueden no estar activos.'},
+  p3:{ok:'✅ Correcto. Si todos los aspectos son significativos, el concepto de significatividad pierde su función de priorización. Los recursos se dispersan en lugar de concentrarse donde el impacto real es mayor.',ko:'❌ Incorrecto. El problema no es tener muchos aspectos sino que la clasificación de todos como significativos indica un fallo metodológico: la significatividad pierde su función de priorización de recursos.'},
+  p4:{ok:'✅ Correcto. Los aspectos con requisito legal son automáticamente significativos en la mayoría de metodologías, independientemente de su puntuación en la matriz. El cumplimiento legal es innegociable.',ko:'❌ Incorrecto. El criterio adicional que eleva automáticamente la significatividad es la existencia de requisito legal. Si hay ley que regule ese aspecto, es significativo por defecto.'},
+  p5:{ok:'✅ Correcto. Los aspectos significativos generan obligaciones en cascada: controles operacionales, comunicación al personal, formación específica y seguimiento con indicadores. Todo está interconectado en la norma.',ko:'❌ Incorrecto. Los aspectos significativos generan obligaciones concretas en otras cláusulas: control operacional (8.1), comunicación (7.4), formación (7.2), toma de conciencia (7.3) y seguimiento (9.1).'},
+  p6:{ok:'✅ Correcto. La regla de oro: severidad alta justifica por sí sola la significatividad, independientemente de la probabilidad. Un evento raro pero catastrófico debe gestionarse con el mismo rigor que un evento frecuente.',ko:'❌ Incorrecto. La severidad alta justifica por sí sola la significatividad. Un derrame accidental de producto peligroso puede contaminar un acuífero aunque ocurra una vez en 20 años — eso es razón suficiente para tener un plan de emergencias.'},
+  p7:{ok:'✅ Correcto. La norma exige que la evaluación de aspectos se actualice ante cambios en las condiciones de operación. Un cambio tecnológico mayor como este genera aspectos nuevos (cartuchos, RAEE) que sin identificar equivalen a riesgos sin gestionar.',ko:'❌ Incorrecto. La actualización de la evaluación de aspectos es obligatoria ante cambios significativos en las condiciones de operación. No actualizar equivale a tener aspectos ambientales sin identificar — NC mayor automática.'},
+  p8:{ok:'✅ Correcto. Ambos métodos son válidos — la norma no prescribe ninguno. Lo importante es que los criterios estén documentados y se apliquen de forma consistente.',ko:'❌ Incorrecto. Ambos métodos son válidos para ISO 14001. La norma no prescribe ninguna metodología específica. Lo que exige es que los criterios estén documentados y sean aplicados de forma consistente.'},
+  p9:{ok:'✅ Correcto. La perspectiva de ciclo de vida permite gestionar aspectos aguas arriba (proveedores) a través de criterios en la política de compras y exigencia de certificaciones ambientales.',ko:'❌ Incorrecto. Aunque los campos de cultivo no estén en el alcance, la perspectiva de ciclo de vida permite gestionarlos a través de criterios ambientales a proveedores (certificaciones, buenas prácticas agrícolas).'},
+  p10:{ok:'✅ Correcto. El proceso empieza por identificar las actividades, productos y servicios dentro del alcance. Sin este inventario previo, la identificación de aspectos será incompleta.',ko:'❌ Incorrecto. El primer paso es identificar las actividades, productos y servicios de la organización dentro del alcance. Sin este inventario, el resto del proceso será incompleto.'},
+  p11:{ok:'✅ Correcto. Los SCRAP (Sistemas Colectivos de Responsabilidad Ampliada del Productor) gestionan el fin de vida de envases, residuos eléctricos, pilas y otros productos. Adherirse a ellos es la forma habitual de gestionar el aspecto "fin de vida del producto".',ko:'❌ Incorrecto. SCRAP significa Sistemas Colectivos de Responsabilidad Ampliada del Productor — organizaciones que gestionan el fin de vida de ciertos productos como envases, aparatos eléctricos o pilas. No son residuos de mecanizado.'},
+  p12:{ok:'✅ Correcto. La evaluación de aspectos es un proceso vivo — debe actualizarse cuando cambian las condiciones: nuevos procesos, cambios en instalaciones, modificaciones de productos, cambios legales o lecciones aprendidas de incidentes.',ko:'❌ Incorrecto. La evaluación debe actualizarse siempre que cambien las condiciones de operación: nuevo proceso, nuevo producto, cambio de instalaciones, cambio legal relevante o incidente ambiental significativo.'}
+};
+function sel(el,pid,ok){if(document.getElementById('btnComprobar').disabled)return;el.closest('.opciones').querySelectorAll('.opcion').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');R[pid]={idx:Array.from(el.closest('.opciones').children).indexOf(el),ok};}
+function comprobarQuiz(){const ps=['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12'];if(Object.keys(R).length<ps.length){alert('Responde todas las preguntas.');return;}let a=0;ps.forEach(pid=>{const r=R[pid];const ops=document.querySelectorAll('#'+pid+' .opcion');const fb=document.getElementById('fb'+pid.substring(1));ops.forEach(o=>o.style.pointerEvents='none');if(r.ok){ops[r.idx].classList.add('correcta');fb.className='feedback-pregunta ok';fb.textContent=FB[pid].ok;a++;}else{ops[r.idx].classList.add('incorrecta');ops[CI[pid]].classList.add('correcta');fb.className='feedback-pregunta ko';fb.textContent=FB[pid].ko;}});document.getElementById('btnComprobar').disabled=true;document.getElementById('btnComprobar').style.display='none';document.getElementById('btnReset').style.display='inline-block';const res=document.getElementById('quizResultado');res.classList.add('visible');const pct=Math.round(a/12*100);res.style.color=pct>=80?'var(--acento-dark)':pct>=60?'var(--amarillo)':'var(--rojo)';res.textContent=pct>=80?`🎉 ${a}/12 (${pct}%) — Dominas la evaluación de aspectos.`:pct>=60?`📖 ${a}/12 (${pct}%) — Repasa los puntos incorrectos.`:`🔄 ${a}/12 (${pct}%) — Vuelve a leer el módulo.`;}
+function resetQuiz(){Object.keys(R).forEach(k=>delete R[k]);document.querySelectorAll('.opcion').forEach(o=>{o.classList.remove('selected','correcta','incorrecta');o.style.pointerEvents='';});document.querySelectorAll('.feedback-pregunta').forEach(f=>{f.className='feedback-pregunta';f.textContent='';});document.getElementById('btnComprobar').disabled=false;document.getElementById('btnComprobar').style.display='';document.getElementById('btnReset').style.display='none';document.getElementById('quizResultado').classList.remove('visible');}
+function descargar(){const t=`PLANTILLA DE EVALUACIÓN DE ASPECTOS E IMPACTOS AMBIENTALES — ISO 14001:2015\n${'='.repeat(65)}\n\nMETODOLOGÍA APLICADA:\nSignificatividad = Severidad × Frecuencia (+ criterio legal automático)\nEscala Severidad: 1=leve/temporal, 2=moderado/recuperable, 3=grave/irreversible\nEscala Frecuencia: 1=rara vez (<1/año), 2=mensual/ocasional, 3=diaria/continua\nUmbral significativo: ≥ 4 (o cualquier puntuación si hay requisito legal)\n\nFORMATO DE TABLA (copiar a Excel):\nActividad | Condición | Aspecto ambiental | Impacto ambiental | Sev (1-3) | Frec (1-3) | Puntuación | ¿Req. legal? | Significativo | Control/Objetivo\n\n30 EJEMPLOS POR SECTOR:\n\n--- INDUSTRIA (MECANIZADO/METALURGIA) ---\nMecanizado | Normal | Generación virutas metálicas | Agotamiento recursos materiales | 2 | 3 | 6 | No | SÍ | Gestor valorización + objetivo recuperación\nMecanizado | Normal | Consumo taladrinas | Agotamiento recursos no renovables | 2 | 3 | 6 | No | SÍ | Control consumo + evaluación alternativas\nTrat. superficial | Normal | Vertido aguas metales pesados | Contaminación agua | 3 | 3 | 9 | SÍ | SÍ | Depuradora + autorización vertidos\nTrat. superficial | Normal | Generación lodos RP | Contaminación suelo | 3 | 2 | 6 | SÍ | SÍ | Gestor RP autorizado\nPintura | Normal | Emisión COV | Contaminación atmosférica | 2 | 3 | 6 | SÍ | SÍ | Cabina homologada + registro COV\nInstalaciones | Normal | Consumo energía eléctrica | Emisiones indirectas CO2 | 2 | 3 | 6 | No | SÍ | Plan eficiencia + objetivo reducción\nInstalaciones | Normal | Consumo agua | Agotamiento recurso hídrico | 1 | 3 | 3 | No | NO | Monitorizar consumo\nMantenimiento | Anormal | Generación aceites usados RP | Contaminación suelo | 3 | 1 | 3 | SÍ | SÍ* | *Legal: Gestor RP\nEmergencia | Emergencia | Derrame productos químicos | Contaminación suelo/agua | 3 | 1 | 3 | No | SÍ* | *Severidad: Plan emergencias\nAlmacén | Normal | Almacenamiento residuos peligrosos | Riesgo contaminación | 3 | 3 | 9 | SÍ | SÍ | Zona RP reglamentaria\n\n--- CONSTRUCCIÓN ---\nExcavación | Normal | Movimiento de tierras | Erosión y pérdida suelo | 2 | 2 | 4 | No | SÍ | Medidas anti-erosión en proyecto\nObra | Normal | Generación RCD (residuos construcción) | Agotamiento recursos | 2 | 3 | 6 | SÍ | SÍ | Gestor RCD autorizado + registro\nObra | Normal | Ruido de maquinaria | Molestia comunidad, fauna | 2 | 3 | 6 | SÍ | SÍ | Horario restricción + equipos < límite\nObra | Normal | Polvo en suspensión | Calidad del aire | 1 | 3 | 3 | No | NO | Riego de viales en seco\nObra | Normal | Consumo agua obra | Agotamiento hídrico | 1 | 2 | 2 | No | NO | Monitorizar consumo\nMaquinaria | Normal | Consumo gasoil | Emisiones CO2, agotamiento | 2 | 3 | 6 | No | SÍ | Revisión ITV + optimización uso\nMaquinaria | Anormal | Derrame hidráulico en campo | Contaminación suelo | 3 | 1 | 3 | No | SÍ* | *Severidad: kit antivertido\nObra | Emergencia | Incendio materiales | Contaminación aire/suelo | 3 | 1 | 3 | No | SÍ* | *Severidad: Plan emergencia ambiental\nCimentación | Anormal | Afloración aguas subterráneas | Alteración nivel freático | 2 | 1 | 2 | No | NO | Evaluación geotécnica previa\nDerribo | Normal | Polvo amianto (si presente) | Contaminación aire, salud | 3 | 1 | 3 | SÍ | SÍ | Plan trabajo RRPG + gestor autorizado\n\n--- SERVICIOS / OFICINAS ---\nOficinas | Normal | Consumo energía eléctrica | Emisiones indirectas CO2 | 2 | 3 | 6 | No | SÍ | Plan eficiencia energética\nOficinas | Normal | Generación residuos papel | Agotamiento recursos forestales | 1 | 3 | 3 | No | NO | Digitalización + papel reciclado\nOficinas | Normal | Generación residuos informáticos (RAEE) | Residuos peligrosos | 2 | 1 | 2 | SÍ | SÍ* | *Legal: Gestor RAEE autorizado\nOficinas | Normal | Consumo agua sanitarios | Agotamiento recurso hídrico | 1 | 3 | 3 | No | NO | Grifos ahorradores\nFlota vehículos | Normal | Emisiones CO2 flota | Cambio climático | 2 | 3 | 6 | No | SÍ | Plan renovación flota + conducción eficiente\nComedor empresa | Normal | Generación residuos orgánicos | Metano en vertedero | 1 | 3 | 3 | No | NO | Separación en origen + compostaje\nLimpieza | Normal | Uso productos químicos de limpieza | Contaminación agua | 1 | 3 | 3 | SÍ | SÍ* | *Legal: Fichas seguridad + vertido correcto\nMantenimiento | Anormal | Pequeñas fugas refrigerante AC | Destrucción capa de ozono | 3 | 1 | 3 | SÍ | SÍ | *Legal+Severidad: Técnico certificado F-Gas\nInstalaciones | Emergencia | Incendio instalaciones | Contaminación agua/suelo (extinción) | 3 | 1 | 3 | No | SÍ* | *Severidad: Plan emergencias ambiental\nEventos empresa | Normal | Generación residuos eventos | Agotamiento recursos | 1 | 1 | 1 | No | NO | Guía buenas prácticas ambientales\n\nNOTAS:\n* = Significativo por criterio adicional (legal o severidad alta), independientemente de puntuación\nActualizar siempre que: nuevo proceso, nueva instalación, cambio de producto, cambio legal, incidente ambiental\n\n© Curso Consultor ISO 14001 — Todos los derechos reservados`;
+  const b=new Blob([t],{type:'text/plain;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='plantilla-aspectos-impactos-iso14001.txt';a.click();URL.revokeObjectURL(u);}
+</script>
+</body>
+</html>

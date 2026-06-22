@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 3 — Contexto y Partes Interesadas | Curso ISO 14001</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+:root{--azul:#1A3A2C;--azul-mid:#2D6A4F;--azul-claro:#D8F3DC;--acento:#52B788;--acento-dark:#40916C;--rojo:#C0392B;--rojo-light:#FDECEA;--amarillo:#D97706;--amarillo-light:#FEF3C7;--gris-1:#F7F8FA;--gris-2:#E8EBF0;--gris-3:#9AA3B0;--texto:#1A1F2E;--radio:10px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--gris-1);color:var(--texto);font-size:16px;line-height:1.7;}
+.layout{display:flex;min-height:100vh;}
+.sidebar{width:280px;flex-shrink:0;background:var(--azul);color:#fff;padding:32px 0;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-logo{padding:0 24px 24px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:20px;}
+.badge{background:var(--acento);color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:8px;}
+.sidebar-logo h2{font-family:'DM Serif Display',serif;font-size:17px;line-height:1.3;}
+.sidebar-logo p{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.sidebar-progress{padding:0 24px 20px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:20px;}
+.progress-label{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.progress-bar-bg{background:rgba(255,255,255,0.15);border-radius:4px;height:6px;}
+.progress-bar-fill{background:var(--acento);border-radius:4px;height:6px;width:27%;}
+.progress-pct{font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px;}
+.sidebar nav ul{list-style:none;}
+.sidebar nav ul li a{display:flex;align-items:center;gap:10px;padding:9px 24px;color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;transition:all 0.2s;border-left:3px solid transparent;}
+.sidebar nav ul li a.active{color:#fff;border-left-color:var(--acento);background:rgba(255,255,255,0.08);font-weight:600;}
+.sidebar nav ul li a.done{color:rgba(255,255,255,0.4);}
+.check{width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;}
+.done .check{background:var(--acento);border-color:var(--acento);}
+.main{flex:1;padding:48px 56px;max-width:880px;}
+.modulo-eyebrow{font-size:12px;font-weight:600;color:var(--acento-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+h1{font-family:'DM Serif Display',serif;font-size:40px;line-height:1.2;color:var(--azul);margin-bottom:16px;}
+.modulo-intro{font-size:17px;color:#4A5568;max-width:660px;margin-bottom:20px;}
+.modulo-meta{display:flex;gap:24px;margin-bottom:40px;flex-wrap:wrap;}
+.meta-item{font-size:13px;color:var(--gris-3);}
+.seccion{margin-bottom:60px;}
+h2{font-family:'DM Serif Display',serif;font-size:28px;color:var(--azul);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--gris-2);}
+h3{font-size:17px;font-weight:700;color:var(--texto);margin:28px 0 10px;}
+p{color:#374151;margin-bottom:14px;line-height:1.75;}
+ul,ol{margin:0 0 14px 20px;color:#374151;}
+ul li,ol li{margin-bottom:10px;line-height:1.6;}
+.callout{padding:20px 24px;border-radius:var(--radio);margin:24px 0;display:flex;gap:16px;}
+.callout.info{background:var(--azul-claro);border-left:4px solid var(--azul-mid);}
+.callout.alerta{background:var(--amarillo-light);border-left:4px solid var(--amarillo);}
+.callout.clave{background:#E0F2F1;border-left:4px solid var(--acento-dark);}
+.callout-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.callout-body strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;color:var(--azul);}
+.callout.alerta .callout-body strong{color:var(--amarillo);}
+.callout.clave .callout-body strong{color:var(--acento-dark);}
+.callout-body p{margin:0;font-size:14.5px;color:#374151;}
+.infografia-wrap{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);padding:32px;margin:28px 0;overflow-x:auto;}
+.infografia-titulo{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--gris-3);margin-bottom:24px;}
+.tabla-wrap{overflow-x:auto;margin:20px 0;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+th{background:var(--azul);color:#fff;padding:12px 16px;text-align:left;font-weight:600;}
+td{padding:11px 16px;border-bottom:1px solid var(--gris-2);vertical-align:top;}
+tr:nth-child(even) td{background:var(--gris-1);}
+tr:last-child td{border-bottom:none;}
+.caso-practico{background:#fff;border:2px solid var(--acento);border-radius:var(--radio);padding:28px;margin:28px 0;}
+.caso-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.caso-badge{background:var(--acento);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px;text-transform:uppercase;}
+.caso-header h4{font-size:16px;font-weight:700;color:var(--acento-dark);margin:0;}
+.auditor-tip{background:#1A1F2E;color:#fff;border-radius:var(--radio);padding:24px 28px;margin:24px 0;}
+.auditor-tip h4{font-size:14px;font-weight:700;color:var(--acento);margin-bottom:10px;}
+.auditor-tip p,.auditor-tip li{font-size:14px;color:rgba(255,255,255,0.85);line-height:1.7;}
+.auditor-tip ul{margin-left:20px;}
+.auditor-tip ul li{margin-bottom:6px;}
+.dafo-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radio);overflow:hidden;border:1px solid var(--gris-2);margin:24px 0;}
+.dafo-cell{padding:22px;}
+.dafo-cell h4{font-size:13px;font-weight:700;margin-bottom:10px;}
+.dafo-cell ul{font-size:13px;color:#374151;padding-left:16px;margin:0;}
+.dafo-cell ul li{margin-bottom:5px;}
+.dafo-D{background:#FEF3C7;border-right:1px solid var(--gris-2);border-bottom:1px solid var(--gris-2);}
+.dafo-D h4{color:#D97706;}
+.dafo-A{background:#FDECEA;border-bottom:1px solid var(--gris-2);}
+.dafo-A h4{color:#C0392B;}
+.dafo-F{background:#D8F3DC;border-right:1px solid var(--gris-2);}
+.dafo-F h4{color:#1A3A2C;}
+.dafo-O{background:#E0F2F1;}
+.dafo-O h4{color:#2D6A4F;}
+.descargable{background:linear-gradient(135deg,var(--azul),var(--azul-mid));border-radius:var(--radio);padding:28px 32px;color:#fff;display:flex;align-items:center;gap:24px;margin:32px 0;}
+.descargable-icon{font-size:40px;flex-shrink:0;}
+.descargable-body h4{font-size:17px;font-weight:600;margin-bottom:6px;}
+.descargable-body p{font-size:13.5px;color:rgba(255,255,255,0.75);margin:0 0 16px;}
+.btn-dl{background:var(--acento);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;}
+.quiz-container{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);overflow:hidden;margin:32px 0;}
+.quiz-header{background:var(--azul);color:#fff;padding:20px 28px;display:flex;align-items:center;gap:12px;}
+.quiz-header h3{font-size:16px;font-weight:600;border:none;margin:0;padding:0;color:#fff;}
+.quiz-badge{background:var(--acento);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;margin-left:auto;}
+.quiz-body{padding:28px;}
+.pregunta{margin-bottom:32px;}
+.pregunta:last-child{margin-bottom:0;}
+.pregunta-num{font-size:11px;font-weight:600;color:var(--gris-3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.pregunta h4{font-size:15px;font-weight:600;margin-bottom:16px;color:var(--texto);}
+.opciones{display:flex;flex-direction:column;gap:10px;}
+.opcion{display:flex;align-items:center;gap:12px;padding:13px 16px;border:2px solid var(--gris-2);border-radius:8px;cursor:pointer;transition:all 0.15s;font-size:14px;color:var(--texto);}
+.opcion:hover{border-color:var(--azul-mid);background:var(--azul-claro);}
+.opcion-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--gris-2);flex-shrink:0;}
+.opcion.selected{border-color:var(--azul-mid);background:var(--azul-claro);}
+.opcion.selected .opcion-dot{background:var(--azul-mid);border-color:var(--azul-mid);}
+.opcion.correcta{border-color:var(--acento-dark);background:var(--azul-claro);}
+.opcion.correcta .opcion-dot{background:var(--acento-dark);border-color:var(--acento-dark);}
+.opcion.incorrecta{border-color:var(--rojo);background:var(--rojo-light);}
+.opcion.incorrecta .opcion-dot{background:var(--rojo);border-color:var(--rojo);}
+.feedback-pregunta{margin-top:12px;padding:12px 16px;border-radius:8px;font-size:13.5px;display:none;}
+.feedback-pregunta.ok{background:var(--azul-claro);color:#1A5C38;display:block;}
+.feedback-pregunta.ko{background:var(--rojo-light);color:#8B1A10;display:block;}
+.quiz-footer{padding:20px 28px;border-top:1px solid var(--gris-2);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.btn-quiz{background:var(--azul);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;}
+.btn-quiz:hover{background:var(--azul-mid);}
+.btn-quiz:disabled{background:var(--gris-3);cursor:not-allowed;}
+.quiz-resultado{font-size:14px;color:var(--gris-3);display:none;}
+.quiz-resultado.visible{display:block;}
+.modulo-nav{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:32px;border-top:2px solid var(--gris-2);}
+.btn-nav{display:flex;align-items:center;gap:10px;padding:13px 24px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;}
+.btn-nav.siguiente{background:var(--azul);color:#fff;}
+.btn-nav.anterior{background:#fff;color:var(--azul);border:2px solid var(--gris-2);}
+@media(max-width:768px){.sidebar{display:none;}.main{padding:24px 20px;}h1{font-size:28px;}.dafo-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="badge">ISO 14001:2015</div>
+    <h2>Consultor SGA<br>Certificado</h2>
+    <p>Sistema de Gestión Ambiental</p>
+  </div>
+  <div class="sidebar-progress">
+    <div class="progress-label">Progreso</div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+    <div class="progress-pct">Módulo 3 de 11</div>
+  </div>
+  <nav><ul>
+    <li><a href="iso14001-modulo1.html" class="done"><span class="check">✓</span> Fundamentos y Marco Legal</a></li>
+    <li><a href="iso14001-modulo2.html" class="done"><span class="check">✓</span> La norma ISO 14001:2015</a></li>
+    <li><a href="#" class="active"><span class="check">3</span> Contexto y Partes Interesadas</a></li>
+    <li><a href="#"><span class="check">4</span> Aspectos e Impactos Ambientales</a></li>
+    <li><a href="#"><span class="check">5</span> Requisitos Legales y Cumplimiento</a></li>
+    <li><a href="#"><span class="check">6</span> Liderazgo, Política y Objetivos</a></li>
+    <li><a href="#"><span class="check">7</span> Soporte y Control Operacional</a></li>
+    <li><a href="#"><span class="check">8</span> Emergencias Ambientales</a></li>
+    <li><a href="#"><span class="check">9</span> Evaluación del Desempeño</a></li>
+    <li><a href="#"><span class="check">10</span> Integración ISO 9001+14001+45001</a></li>
+    <li><a href="#"><span class="check">11</span> Proyecto Final</a></li>
+  </ul></nav>
+</aside>
+<main class="main">
+  <div class="modulo-eyebrow">Módulo 3 de 11 — Cláusula 4</div>
+  <h1>Contexto y Partes Interesadas</h1>
+  <p class="modulo-intro">El análisis de contexto en ISO 14001 tiene una dimensión que no existe en ninguna otra norma: las condiciones ambientales del emplazamiento. La empresa no existe en el vacío — existe en un ecosistema local que condiciona qué aspectos son significativos y qué riesgos son reales.</p>
+  <div class="modulo-meta">
+    <span class="meta-item">⏱ 2h 30min</span>
+    <span class="meta-item">✅ 12 preguntas</span>
+    <span class="meta-item">📋 Plantillas contexto ambiental + partes interesadas</span>
+  </div>
+
+  <section class="seccion">
+    <h2>1. Las condiciones ambientales del emplazamiento: la novedad que más se omite</h2>
+    <p>La cláusula 4.1 de ISO 14001 incluye un concepto que no existe en ninguna otra norma ISO de sistemas de gestión: las <strong>condiciones ambientales</strong>. La organización debe considerar el estado del medio ambiente local — la calidad del aire, del agua subterránea, del suelo, la biodiversidad — como parte de su análisis de contexto.</p>
+    <p>¿Por qué importa esto? Porque el impacto de un aspecto ambiental no es el mismo en todos los emplazamientos. Verter 10 litros de un producto a una gran depuradora urbana no es lo mismo que verterlos a un río en una zona de alto valor ecológico. Emitir partículas en una zona industrial no es lo mismo que hacerlo en una zona con problemas de calidad del aire.</p>
+
+    <div class="infografia-wrap">
+      <div class="infografia-titulo">🗺️ Condiciones ambientales del emplazamiento — Qué analizar</div>
+      <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;">
+        <circle cx="340" cy="160" r="60" fill="#1A3A2C"/>
+        <text x="340" y="154" text-anchor="middle" font-family="DM Serif Display,serif" font-size="13" fill="white" font-weight="bold">EMPRESA</text>
+        <text x="340" y="172" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">+ entorno</text>
+
+        <rect x="20" y="20" width="160" height="80" rx="8" fill="#D8F3DC" stroke="#2D6A4F" stroke-width="1.5"/>
+        <text x="100" y="45" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">AGUA</text>
+        <text x="100" y="61" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Calidad acuíferos</text>
+        <text x="100" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Ríos y cuencas próximas</text>
+        <text x="100" y="91" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Zonas inundables</text>
+        <line x1="180" y1="60" x2="280" y2="120" stroke="#2D6A4F" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <rect x="500" y="20" width="160" height="80" rx="8" fill="#D8F3DC" stroke="#2D6A4F" stroke-width="1.5"/>
+        <text x="580" y="45" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">AIRE</text>
+        <text x="580" y="61" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Calidad del aire local</text>
+        <text x="580" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Zona de alta contaminación</text>
+        <text x="580" y="91" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Rosa de vientos</text>
+        <line x1="500" y1="60" x2="400" y2="120" stroke="#2D6A4F" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <rect x="20" y="220" width="160" height="80" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+        <text x="100" y="245" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">SUELO</text>
+        <text x="100" y="261" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Suelos contaminados previos</text>
+        <text x="100" y="276" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Permeabilidad</text>
+        <text x="100" y="291" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Uso anterior del terreno</text>
+        <line x1="180" y1="260" x2="280" y2="200" stroke="#D97706" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <rect x="500" y="220" width="160" height="80" rx="8" fill="#E0F2F1" stroke="#40916C" stroke-width="1.5"/>
+        <text x="580" y="245" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A2C">BIODIVERSIDAD</text>
+        <text x="580" y="261" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Zonas Red Natura 2000</text>
+        <text x="580" y="276" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Especies protegidas</text>
+        <text x="580" y="291" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Hábitats sensibles</text>
+        <line x1="500" y1="260" x2="400" y2="200" stroke="#40916C" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <rect x="240" y="20" width="200" height="60" rx="8" fill="#EAF1FB" stroke="#1A3A5C" stroke-width="1.5"/>
+        <text x="340" y="44" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#1A3A5C">ENTORNO SOCIAL Y URBANO</text>
+        <text x="340" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Vecinos, uso del suelo circundante, zonas protegidas</text>
+        <line x1="340" y1="80" x2="340" y2="100" stroke="#1A3A5C" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <rect x="240" y="240" width="200" height="60" rx="8" fill="#F3E8FF" stroke="#7C3AED" stroke-width="1.5"/>
+        <text x="340" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#5B21B6">CAMBIO CLIMÁTICO</text>
+        <text x="340" y="280" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#374151">Riesgos climáticos: sequía, inundación, calor extremo</text>
+        <line x1="340" y1="240" x2="340" y2="220" stroke="#7C3AED" stroke-width="1" stroke-dasharray="4,3"/>
+      </svg>
+    </div>
+
+    <div class="auditor-tip">
+      <h4>🔍 Cómo afectan las condiciones ambientales a la significatividad</h4>
+      <p>Una empresa que vierte aguas industriales tratadas a una red de saneamiento en una ciudad grande tendrá ese aspecto como no significativo. La misma empresa, trasladada a un municipio rural con un río próximo catalogado en Red Natura 2000, tendrá ese aspecto como significativo — aunque el vertido sea idéntico. El auditor buscará que la evaluación de significatividad tenga en cuenta el contexto ambiental real del emplazamiento, no solo los parámetros internos.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>2. Análisis DAFO ambiental: más allá del genérico</h2>
+    <p>Al igual que en ISO 9001 e ISO 45001, el DAFO es la herramienta más utilizada para estructurar el análisis de contexto. Pero en ISO 14001 el DAFO debe tener un enfoque ambiental específico — no corporativo genérico.</p>
+
+    <div class="dafo-grid">
+      <div class="dafo-cell dafo-D">
+        <h4>⚠️ Debilidades (internas)</h4>
+        <ul>
+          <li>Instalaciones antiguas sin controles de emisión modernos</li>
+          <li>Personal sin formación ambiental específica</li>
+          <li>Procesos con alto consumo de agua y energía</li>
+          <li>Ausencia de sistema de gestión de residuos documentado</li>
+          <li>Dependencia de materias primas con alto impacto ambiental</li>
+        </ul>
+      </div>
+      <div class="dafo-cell dafo-A">
+        <h4>🚨 Amenazas (externas)</h4>
+        <ul>
+          <li>Endurecimiento de la legislación ambiental previsto</li>
+          <li>Inspecciones periódicas de la Consejería de MA</li>
+          <li>Clientes que exigen ISO 14001 o compromisos ESG</li>
+          <li>Comunidad local sensible a impactos ambientales</li>
+          <li>Cambio climático — riesgo de sequía para proceso hídrico-intensivo</li>
+        </ul>
+      </div>
+      <div class="dafo-cell dafo-F">
+        <h4>💪 Fortalezas (internas)</h4>
+        <ul>
+          <li>Proceso productivo con bajo consumo energético</li>
+          <li>Planta reciente con mejores técnicas disponibles</li>
+          <li>Dirección comprometida con la sostenibilidad</li>
+          <li>Sistema de recirculación de agua ya instalado</li>
+          <li>Contrato con gestores de residuos reconocidos</li>
+        </ul>
+      </div>
+      <div class="dafo-cell dafo-O">
+        <h4>🚀 Oportunidades (externas)</h4>
+        <ul>
+          <li>Ahorro de costes por eficiencia energética e hídrica</li>
+          <li>Acceso a licitaciones que exigen ISO 14001</li>
+          <li>Diferenciación ante competidores sin certificación</li>
+          <li>Subvenciones para inversión en tecnologías limpias</li>
+          <li>Mejora de imagen ante inversores ESG</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout alerta">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body"><strong>Error que el auditor detecta en 2 minutos</strong>
+      <p>Un DAFO ambiental que no menciona ni una sola legislación específica, ni un solo riesgo de inspección, ni una sola característica del entorno local. Si el DAFO de una fábrica química es indistinguible del de una empresa de servicios digitales, no hay análisis ambiental real. El auditor cruzará el DAFO con la evaluación de aspectos — deben ser coherentes.</p></div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>3. Partes interesadas en el SGA: quiénes son y qué quieren</h2>
+    <p>La cláusula 4.2 exige identificar las partes interesadas relevantes para el SGA y sus necesidades y expectativas. En ISO 14001, el mapa de partes interesadas es más amplio que en ISO 9001 porque los impactos ambientales afectan a actores que van mucho más allá de los clientes y trabajadores.</p>
+
+    <div class="tabla-wrap"><table>
+      <thead><tr><th>Parte interesada</th><th>Necesidades/expectativas ambientales</th><th>Cómo gestionarlas</th><th>¿Hay requisito legal?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Autoridad ambiental (CCAA)</strong></td><td>Cumplimiento de autorizaciones, VLE, registros al día, cooperación en inspecciones</td><td>Mantener autorizaciones vigentes, autocontroles, respuesta ágil a requerimientos</td><td>✅ LPMA, Ley 26/2007</td></tr>
+        <tr><td><strong>Confederación Hidrográfica</strong></td><td>Cumplimiento autorización de vertidos, caudales ecológicos</td><td>Autorización de vertidos vigente, autocontroles analíticos periódicos</td><td>✅ Ley de Aguas RDL 1/2001</td></tr>
+        <tr><td><strong>SEPRONA / Fiscalía de MA</strong></td><td>Cumplimiento normativa ambiental penal</td><td>No tener incumplimientos. Documentar diligencia debida</td><td>✅ Art. 325-331 CP</td></tr>
+        <tr><td><strong>Comunidad local / vecinos</strong></td><td>No ser afectados por ruido, olores, vertidos, polvo</td><td>Controles operacionales, plan de emergencias, canal de comunicación abierto</td><td>Parcial — Ley Ruido</td></tr>
+        <tr><td><strong>Clientes con requisitos ESG</strong></td><td>Certificación ISO 14001, huella de carbono, memoria de sostenibilidad</td><td>Mantener certificado, medir y comunicar indicadores ambientales</td><td>❌ Contractual</td></tr>
+        <tr><td><strong>ONGs y grupos ecologistas</strong></td><td>Reducción del impacto ambiental real, transparencia</td><td>Comunicación ambiental proactiva, participación en iniciativas</td><td>❌ Voluntario</td></tr>
+        <tr><td><strong>Inversores y entidades financieras</strong></td><td>Gestión de riesgos ambientales, compromisos ESG, reporting</td><td>Información ambiental en memorias anuales, rating ESG</td><td>Parcial — CSRD UE</td></tr>
+        <tr><td><strong>Trabajadores</strong></td><td>Entorno de trabajo sin contaminación, formación ambiental</td><td>Concienciación ambiental, protección frente a agentes ambientales</td><td>✅ LPRL</td></tr>
+        <tr><td><strong>Proveedores y contratistas</strong></td><td>Criterios ambientales claros, procedimientos de coordinación</td><td>Criterios ambientales en compras, requisitos a proveedores de aspectos significativos</td><td>Parcial — Ley 26/2007</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="callout info">
+      <div class="callout-icon">📋</div>
+      <div class="callout-body"><strong>La CSRD y el nuevo contexto de reporting ambiental</strong>
+      <p>La Directiva europea CSRD (Corporate Sustainability Reporting Directive), en vigor desde 2024 para grandes empresas y con calendario de extensión a medianas, está cambiando radicalmente qué se espera de la información ambiental corporativa. Los inversores y entidades financieras ya no se conforman con tener un certificado ISO 14001 — exigen datos cuantitativos sobre emisiones, agua, residuos y biodiversidad. Como consultor, esto amplía tu propuesta de valor: un SGA bien implementado genera los datos que la CSRD requiere.</p></div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>4. Alcance del SGA: la decisión estratégica</h2>
+    <p>La cláusula 4.3 exige determinar los límites y la aplicabilidad del SGA. En ISO 14001 esta decisión tiene implicaciones específicas: el alcance debe considerar las unidades organizativas, funciones, límites físicos y geográficos, y actividades, productos y servicios.</p>
+
+    <h3>Criterios para definir el alcance en ISO 14001</h3>
+    <ul>
+      <li>El alcance debe ser consistente con el control e influencia de la organización sobre sus aspectos ambientales</li>
+      <li>No puede excluirse una actividad solo porque tenga impactos ambientales significativos — precisamente eso justifica incluirla</li>
+      <li>Si la organización tiene múltiples centros, el alcance debe especificar cuáles están incluidos</li>
+      <li>Las actividades subcontratadas que tienen aspectos significativos pueden estar bajo la influencia de la organización aunque no estén bajo su control directo</li>
+    </ul>
+
+    <div class="caso-practico">
+      <div class="caso-header">
+        <span class="caso-badge">Caso práctico</span>
+        <h4>Empresa agroalimentaria — Decisión de alcance con actividades subcontratadas</h4>
+      </div>
+      <p><strong>Situación:</strong> Una empresa de producción de aceite de oliva con tres instalaciones propias (molino, refinería, envasado) y transporte subcontratado a terceros. La dirección quiere saber qué entra en el alcance.</p>
+      <p><strong>Análisis:</strong></p>
+      <ul>
+        <li><strong>Molino:</strong> ✅ Incluir — generación de alpechín (residuo líquido), consumo de agua, residuos sólidos (orujo). Aspectos significativos</li>
+        <li><strong>Refinería:</strong> ✅ Incluir — uso de disolventes, emisiones atmosféricas, residuos peligrosos. Aspectos muy significativos</li>
+        <li><strong>Envasado:</strong> ✅ Incluir — residuos de envases, consumo energético</li>
+        <li><strong>Transporte subcontratado:</strong> ⚠️ Parcialmente — la organización tiene influencia (puede exigir criterios ambientales al transportista) aunque no control directo. El alcance debe indicar que se gestionan los aspectos ambientales del transporte a través de criterios a proveedores</li>
+        <li><strong>Olivares proveedores:</strong> ⚠️ Ciclo de vida — no están en el alcance del SGA pero deben considerarse en la perspectiva de ciclo de vida al identificar aspectos. La empresa puede incluir criterios de buenas prácticas agrícolas en su política de compras</li>
+      </ul>
+      <p><strong>Declaración de alcance recomendada:</strong> "El SGA aplica a las actividades de molienda, refinado y envasado de aceite de oliva en las instalaciones de [A], [B] y [C]. La organización ejerce influencia sobre los aspectos ambientales del transporte de producto terminado mediante criterios ambientales a transportistas."</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>5. Control e influencia: el concepto que más cambia el alcance del análisis</h2>
+    <p>ISO 14001 introduce una distinción fundamental: la organización no solo debe gestionar los aspectos sobre los que tiene <strong>control</strong> (sus propias instalaciones y procesos) sino también los que están bajo su <strong>influencia</strong> (proveedores, contratistas, distribuidores, clientes).</p>
+
+    <div class="tabla-wrap"><table>
+      <thead><tr><th>Tipo de relación</th><th>Ejemplos</th><th>Grado de control</th><th>Cómo gestionarlo en el SGA</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Control directo</strong></td><td>Propias instalaciones, empleados propios, procesos productivos</td><td>Total</td><td>Procedimientos operativos, controles directos, formación del personal</td></tr>
+        <tr><td><strong>Influencia contractual</strong></td><td>Proveedores de materias primas, contratistas en instalaciones, transportistas</td><td>Alto</td><td>Criterios ambientales en contratos, auditorías a proveedores, requisitos en pliegos</td></tr>
+        <tr><td><strong>Influencia de mercado</strong></td><td>Distribuidores, clientes, uso final del producto</td><td>Medio</td><td>Especificaciones ambientales del producto, instrucciones de uso, diseño ecodiseño</td></tr>
+        <tr><td><strong>Influencia mínima</strong></td><td>Fin de vida del producto por el consumidor final</td><td>Bajo</td><td>Etiquetado ambiental, información de reciclaje, participación en SCRAP</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="callout clave">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-body"><strong>Oportunidad de negocio para el consultor</strong>
+      <p>La distinción control/influencia es donde muchos consultores pierden el hilo y simplifican el análisis. Un consultor de valor explica a su cliente que gestionar los aspectos bajo influencia — especialmente en la cadena de suministro — no solo es un requisito de ISO 14001 sino una oportunidad real de reducción de costes y de mejora del posicionamiento ESG. Los grandes compradores (Inditex, Mercadona, Seat/VW) ya exigen datos ambientales de sus proveedores. El SGA bien implementado prepara al cliente para esa exigencia.</p></div>
+    </div>
+  </section>
+
+  <div class="descargable">
+    <div class="descargable-icon">📋</div>
+    <div class="descargable-body">
+      <h4>Plantillas: Análisis de contexto ambiental + Registro de partes interesadas + Modelo de alcance</h4>
+      <p>Tabla de factores contextuales ambientales internos/externos con conexión a aspectos, registro de partes interesadas con necesidades ambientales específicas, y tres modelos de declaración de alcance por sector.</p>
+      <button class="btn-dl" onclick="descargar()">⬇ Descargar plantillas</button>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <h3>Quiz del Módulo 3</h3><span class="quiz-badge">12 preguntas</span>
+    </div>
+    <div class="quiz-body">
+
+      <div class="pregunta" id="p1"><div class="pregunta-num">Pregunta 1 de 12</div>
+      <h4>¿Qué elemento del contexto de ISO 14001 no existe en ninguna otra norma ISO de sistemas de gestión?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>El análisis de partes interesadas</label>
+        <label class="opcion" onclick="sel(this,'p1',true)"><div class="opcion-dot"></div>Las condiciones ambientales del emplazamiento</label>
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>El análisis DAFO</label>
+        <label class="opcion" onclick="sel(this,'p1',false)"><div class="opcion-dot"></div>La declaración de alcance</label>
+      </div><div class="feedback-pregunta" id="fb1"></div></div>
+
+      <div class="pregunta" id="p2"><div class="pregunta-num">Pregunta 2 de 12</div>
+      <h4>¿Por qué el mismo vertido de aguas puede ser un aspecto significativo en una empresa y no en otra?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>Porque depende del tamaño de la empresa</label>
+        <label class="opcion" onclick="sel(this,'p2',true)"><div class="opcion-dot"></div>Porque las condiciones ambientales del emplazamiento (proximidad a zonas protegidas, calidad del acuífero) cambian el impacto real del aspecto</label>
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>Porque la significatividad es subjetiva y cada empresa la decide libremente</label>
+        <label class="opcion" onclick="sel(this,'p2',false)"><div class="opcion-dot"></div>Porque solo la autoridad ambiental puede declarar un aspecto significativo</label>
+      </div><div class="feedback-pregunta" id="fb2"></div></div>
+
+      <div class="pregunta" id="p3"><div class="pregunta-num">Pregunta 3 de 12</div>
+      <h4>¿Qué diferencia hay entre "control" e "influencia" en el contexto de ISO 14001?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>Son sinónimos — la norma los usa indistintamente</label>
+        <label class="opcion" onclick="sel(this,'p3',true)"><div class="opcion-dot"></div>Control es sobre las propias actividades; influencia es sobre terceros (proveedores, distribuidores) a través de contratos o especificaciones</label>
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>Control aplica a aspectos significativos; influencia a los no significativos</label>
+        <label class="opcion" onclick="sel(this,'p3',false)"><div class="opcion-dot"></div>La influencia solo aplica a los proveedores directos, no a distribuidores o clientes</label>
+      </div><div class="feedback-pregunta" id="fb3"></div></div>
+
+      <div class="pregunta" id="p4"><div class="pregunta-num">Pregunta 4 de 12</div>
+      <h4>¿Puede una empresa excluir de su alcance ISO 14001 una actividad que tiene aspectos ambientales significativos?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Sí, si la justifica documentalmente ante el organismo certificador</label>
+        <label class="opcion" onclick="sel(this,'p4',true)"><div class="opcion-dot"></div>No — la existencia de aspectos significativos es razón para incluir la actividad, no para excluirla</label>
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Sí, si esa actividad ya está regulada por un permiso ambiental específico</label>
+        <label class="opcion" onclick="sel(this,'p4',false)"><div class="opcion-dot"></div>Depende del criterio del auditor externo en cada caso</label>
+      </div><div class="feedback-pregunta" id="fb4"></div></div>
+
+      <div class="pregunta" id="p5"><div class="pregunta-num">Pregunta 5 de 12</div>
+      <h4>¿Por qué la CSRD europea amplía la propuesta de valor del consultor ISO 14001?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>Porque exige que todas las empresas se certifiquen en ISO 14001 antes de 2026</label>
+        <label class="opcion" onclick="sel(this,'p5',true)"><div class="opcion-dot"></div>Porque exige datos cuantitativos ambientales (emisiones, agua, residuos) que un SGA bien implementado genera sistemáticamente</label>
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>Porque sustituye a ISO 14001 como sistema de gestión ambiental estándar en la UE</label>
+        <label class="opcion" onclick="sel(this,'p5',false)"><div class="opcion-dot"></div>Porque permite a las empresas certificadas en ISO 14001 eximir del reporting ambiental</label>
+      </div><div class="feedback-pregunta" id="fb5"></div></div>
+
+      <div class="pregunta" id="p6"><div class="pregunta-num">Pregunta 6 de 12</div>
+      <h4>En el caso de la empresa agroalimentaria, ¿cómo se gestiona en el SGA el aspecto ambiental del transporte subcontratado?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>Se excluye del SGA porque no está bajo control directo de la empresa</label>
+        <label class="opcion" onclick="sel(this,'p6',true)"><div class="opcion-dot"></div>Se gestiona a través de criterios ambientales exigidos al transportista — la empresa ejerce influencia aunque no tenga control directo</label>
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>El transportista debe certificarse él mismo en ISO 14001</label>
+        <label class="opcion" onclick="sel(this,'p6',false)"><div class="opcion-dot"></div>Solo se gestiona si genera una no conformidad con un requisito legal</label>
+      </div><div class="feedback-pregunta" id="fb6"></div></div>
+
+      <div class="pregunta" id="p7"><div class="pregunta-num">Pregunta 7 de 12</div>
+      <h4>¿Cuál de estas partes interesadas puede tener un impacto penal sobre la organización si hay incumplimientos ambientales?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Los clientes con requisitos ESG</label>
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Las ONGs ecologistas</label>
+        <label class="opcion" onclick="sel(this,'p7',true)"><div class="opcion-dot"></div>El SEPRONA y la Fiscalía de Medio Ambiente</label>
+        <label class="opcion" onclick="sel(this,'p7',false)"><div class="opcion-dot"></div>Los inversores ESG</label>
+      </div><div class="feedback-pregunta" id="fb7"></div></div>
+
+      <div class="pregunta" id="p8"><div class="pregunta-num">Pregunta 8 de 12</div>
+      <h4>¿Qué información sobre el entorno físico debe incluirse en el análisis de condiciones ambientales del emplazamiento?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>Solo la normativa ambiental aplicable al sector</label>
+        <label class="opcion" onclick="sel(this,'p8',true)"><div class="opcion-dot"></div>Calidad del agua y acuíferos, calidad del aire local, características del suelo, proximidad a zonas protegidas y riesgos climáticos</label>
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>El historial de sanciones ambientales de la empresa</label>
+        <label class="opcion" onclick="sel(this,'p8',false)"><div class="opcion-dot"></div>Solo aplica si la empresa está en zona rural — no en zonas industriales</label>
+      </div><div class="feedback-pregunta" id="fb8"></div></div>
+
+      <div class="pregunta" id="p9"><div class="pregunta-num">Pregunta 9 de 12</div>
+      <h4>¿Qué señal detecta el auditor en un DAFO ambiental mal elaborado?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>Que tiene más debilidades que fortalezas</label>
+        <label class="opcion" onclick="sel(this,'p9',true)"><div class="opcion-dot"></div>Que podría valer para cualquier empresa de cualquier sector sin cambiar una sola línea — no hay especificidad ambiental ni local</label>
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>Que no está firmado por la dirección</label>
+        <label class="opcion" onclick="sel(this,'p9',false)"><div class="opcion-dot"></div>Que usa metodología DAFO en lugar de PESTEL</label>
+      </div><div class="feedback-pregunta" id="fb9"></div></div>
+
+      <div class="pregunta" id="p10"><div class="pregunta-num">Pregunta 10 de 12</div>
+      <h4>¿Qué expectativa ambiental tienen los inversores y entidades financieras como partes interesadas del SGA?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>Solo que la empresa esté certificada en ISO 14001</label>
+        <label class="opcion" onclick="sel(this,'p10',true)"><div class="opcion-dot"></div>Gestión de riesgos ambientales, datos cuantitativos de desempeño ambiental y compromisos ESG con reporting verificable</label>
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>Que la empresa no haya tenido sanciones ambientales en los últimos 5 años</label>
+        <label class="opcion" onclick="sel(this,'p10',false)"><div class="opcion-dot"></div>Los inversores no son parte interesada relevante para el SGA</label>
+      </div><div class="feedback-pregunta" id="fb10"></div></div>
+
+      <div class="pregunta" id="p11"><div class="pregunta-num">Pregunta 11 de 12</div>
+      <h4>¿Cómo gestiona una empresa de aceite de oliva los aspectos ambientales de los olivares de sus proveedores?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>No debe hacerlo — los olivares no están bajo su control</label>
+        <label class="opcion" onclick="sel(this,'p11',true)"><div class="opcion-dot"></div>A través de la perspectiva de ciclo de vida y criterios ambientales en la política de compras (uso de pesticidas, gestión del agua de riego)</label>
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>Incluyendo los olivares en el alcance del SGA y auditándolos directamente</label>
+        <label class="opcion" onclick="sel(this,'p11',false)"><div class="opcion-dot"></div>Exigiendo a todos los proveedores que se certifiquen en ISO 14001</label>
+      </div><div class="feedback-pregunta" id="fb11"></div></div>
+
+      <div class="pregunta" id="p12"><div class="pregunta-num">Pregunta 12 de 12</div>
+      <h4>¿Qué debe hacer la Confederación Hidrográfica para ser considerada parte interesada relevante del SGA de una empresa?</h4>
+      <div class="opciones">
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>Solicitarlo formalmente a la empresa certificada</label>
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>Realizar una inspección previa a la certificación</label>
+        <label class="opcion" onclick="sel(this,'p12',true)"><div class="opcion-dot"></div>Nada — es parte interesada por defecto si la empresa tiene autorización de vertidos o actividades que afectan al dominio público hidráulico</label>
+        <label class="opcion" onclick="sel(this,'p12',false)"><div class="opcion-dot"></div>Solo si la empresa ha sufrido alguna denuncia ambiental previa</label>
+      </div><div class="feedback-pregunta" id="fb12"></div></div>
+
+    </div>
+    <div class="quiz-footer">
+      <button class="btn-quiz" id="btnComprobar" onclick="comprobarQuiz()">Comprobar respuestas</button>
+      <button class="btn-quiz" id="btnReset" onclick="resetQuiz()" style="background:#fff;color:var(--azul);border:2px solid var(--gris-2);display:none;">Reintentar</button>
+      <span class="quiz-resultado" id="quizResultado"></span>
+    </div>
+  </div>
+
+  <div class="modulo-nav">
+    <a href="iso14001-modulo2.html" class="btn-nav anterior">← Módulo 2</a>
+    <a href="iso14001-modulo4.html" class="btn-nav siguiente">Módulo 4: Aspectos e Impactos Ambientales →</a>
+  </div>
+</main>
+</div>
+<script>
+const R={};
+const CI={p1:1,p2:1,p3:1,p4:1,p5:1,p6:1,p7:2,p8:1,p9:1,p10:1,p11:1,p12:2};
+const FB={
+  p1:{ok:'✅ Correcto. Las condiciones ambientales del emplazamiento (C.4.1) son exclusivas de ISO 14001. Ninguna otra norma ISO de sistemas de gestión pide analizar el estado del medio ambiente local.',ko:'❌ Incorrecto. El elemento exclusivo de ISO 14001 son las condiciones ambientales del emplazamiento — la calidad del agua, el suelo, el aire y la biodiversidad local.'},
+  p2:{ok:'✅ Correcto. Las condiciones ambientales del emplazamiento determinan el impacto real de un aspecto. El mismo vertido puede ser inocuo en un contexto e impactante en otro.',ko:'❌ Incorrecto. La significatividad de un aspecto depende del impacto real en el entorno — y el entorno varía. Un vertido junto a una zona Red Natura 2000 es más significativo que el mismo vertido en una zona industrial alejada de ecosistemas sensibles.'},
+  p3:{ok:'✅ Correcto. Control = sobre las propias actividades. Influencia = sobre terceros mediante contratos, especificaciones o poder de mercado. ISO 14001 exige gestionar ambos.',ko:'❌ Incorrecto. Control e influencia son conceptos distintos. Control aplica a las propias instalaciones y procesos; influencia aplica a proveedores, distribuidores y clientes a través de criterios y contratos.'},
+  p4:{ok:'✅ Correcto. La existencia de aspectos significativos es precisamente la razón para incluir una actividad en el alcance. Las exclusiones no pueden usarse para esquivar la gestión de impactos reales.',ko:'❌ Incorrecto. No puede excluirse una actividad por tener aspectos significativos. Al contrario — eso es razón para incluirla. El alcance no puede usarse para ocultar o evitar gestionar impactos reales.'},
+  p5:{ok:'✅ Correcto. La CSRD exige datos cuantitativos sobre emisiones, agua, residuos y biodiversidad. Un SGA bien implementado genera esos datos sistemáticamente — lo que amplía el valor del consultor.',ko:'❌ Incorrecto. La CSRD no exige ISO 14001 ni la sustituye. Pero exige datos ambientales cuantitativos que un SGA bien implementado genera — lo que hace que el consultor ISO 14001 también pueda ayudar con el reporting CSRD.'},
+  p6:{ok:'✅ Correcto. El transporte subcontratado está bajo influencia aunque no bajo control directo. La empresa puede y debe establecer criterios ambientales en el contrato con el transportista.',ko:'❌ Incorrecto. Aunque no haya control directo, sí existe influencia contractual. La empresa gestiona el aspecto ambiental del transporte estableciendo criterios ambientales al transportista — no excluyéndolo del análisis.'},
+  p7:{ok:'✅ Correcto. El SEPRONA (Guardia Civil Ambiental) y la Fiscalía de Medio Ambiente pueden iniciar investigaciones penales por incumplimientos del Art. 325 CP. Son las partes interesadas con mayor poder sancionador.',ko:'❌ Incorrecto. El SEPRONA y la Fiscalía de MA son las partes interesadas con capacidad de iniciar procedimientos penales por incumplimientos ambientales (Art. 325 CP).'},
+  p8:{ok:'✅ Correcto. Las condiciones ambientales del emplazamiento incluyen calidad del agua y acuíferos, calidad del aire, características del suelo, proximidad a zonas protegidas y cada vez más los riesgos climáticos (sequía, inundación).',ko:'❌ Incorrecto. Las condiciones ambientales incluyen el estado del entorno físico: agua, aire, suelo, biodiversidad y riesgos climáticos. No solo la normativa aplicable.'},
+  p9:{ok:'✅ Correcto. Un DAFO ambiental que no menciona legislación específica, riesgos de inspección ni características del entorno local evidencia que no hay análisis real — solo un formulario rellenado.',ko:'❌ Incorrecto. El problema no es el número de items sino la especificidad. El auditor detecta un DAFO genérico en minutos porque no tiene conexión con la actividad concreta de la empresa ni con su entorno ambiental real.'},
+  p10:{ok:'✅ Correcto. Los inversores ya no se conforman con el certificado ISO 14001 — exigen datos cuantitativos de desempeño ambiental, gestión de riesgos ambientales y compromisos ESG verificables.',ko:'❌ Incorrecto. Los inversores exigen mucho más que el certificado: datos cuantitativos de emisiones, agua y residuos, gestión de riesgos ambientales y compromisos ESG con reporting verificable.'},
+  p11:{ok:'✅ Correcto. La perspectiva de ciclo de vida permite gestionar el impacto ambiental de los olivares a través de criterios en la política de compras — sin incluirlos en el alcance del SGA.',ko:'❌ Incorrecto. Los olivares de proveedores se gestionan a través de la perspectiva de ciclo de vida y criterios en compras. No hace falta incluirlos en el alcance ni exigirles ISO 14001.'},
+  p12:{ok:'✅ Correcto. La Confederación Hidrográfica es parte interesada por defecto si la empresa tiene actividades que afectan al dominio público hidráulico — no necesita solicitarlo.',ko:'❌ Incorrecto. La Confederación Hidrográfica es parte interesada de pleno derecho cuando la empresa tiene autorizaciones de vertido o actividades con impacto en el DPH. No necesita ninguna acción previa.'}
+};
+function sel(el,pid,ok){if(document.getElementById('btnComprobar').disabled)return;el.closest('.opciones').querySelectorAll('.opcion').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');R[pid]={idx:Array.from(el.closest('.opciones').children).indexOf(el),ok};}
+function comprobarQuiz(){const ps=['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12'];if(Object.keys(R).length<ps.length){alert('Responde todas las preguntas.');return;}let a=0;ps.forEach(pid=>{const r=R[pid];const ops=document.querySelectorAll('#'+pid+' .opcion');const fb=document.getElementById('fb'+pid.substring(1));ops.forEach(o=>o.style.pointerEvents='none');if(r.ok){ops[r.idx].classList.add('correcta');fb.className='feedback-pregunta ok';fb.textContent=FB[pid].ok;a++;}else{ops[r.idx].classList.add('incorrecta');ops[CI[pid]].classList.add('correcta');fb.className='feedback-pregunta ko';fb.textContent=FB[pid].ko;}});document.getElementById('btnComprobar').disabled=true;document.getElementById('btnComprobar').style.display='none';document.getElementById('btnReset').style.display='inline-block';const res=document.getElementById('quizResultado');res.classList.add('visible');const pct=Math.round(a/12*100);res.style.color=pct>=80?'var(--acento-dark)':pct>=60?'var(--amarillo)':'var(--rojo)';res.textContent=pct>=80?`🎉 ${a}/12 (${pct}%) — Sólido en contexto y partes interesadas.`:pct>=60?`📖 ${a}/12 (${pct}%) — Repasa los puntos incorrectos.`:`🔄 ${a}/12 (${pct}%) — Vuelve a leer el módulo.`;}
+function resetQuiz(){Object.keys(R).forEach(k=>delete R[k]);document.querySelectorAll('.opcion').forEach(o=>{o.classList.remove('selected','correcta','incorrecta');o.style.pointerEvents='';});document.querySelectorAll('.feedback-pregunta').forEach(f=>{f.className='feedback-pregunta';f.textContent='';});document.getElementById('btnComprobar').disabled=false;document.getElementById('btnComprobar').style.display='';document.getElementById('btnReset').style.display='none';document.getElementById('quizResultado').classList.remove('visible');}
+function descargar(){const t=`PLANTILLAS MÓDULO 3 — CONTEXTO Y PARTES INTERESADAS ISO 14001\n${'='.repeat(60)}\n\nPLANTILLA 1: ANÁLISIS DE CONTEXTO AMBIENTAL\n\nFACTORES INTERNOS AMBIENTALES\n| Factor | Descripción específica | Aspecto ambiental relacionado | Implicación para el SGA |\n|---|---|---|---|\n| Antigüedad instalaciones | ___ años | Emisiones atmosféricas, eficiencia energética | Incluir en evaluación de aspectos |\n| Procesos hídrico-intensivos | ___ m³/día consumo | Consumo agua, vertidos | Aspecto significativo potencial |\n| Sustancias peligrosas usadas | ___ (listar) | Residuos peligrosos, riesgo de derrame | Control operacional + emergencias |\n| Formación ambiental del personal | ___ horas/año | Todos los aspectos | Plan de formación ambiental |\n| Equipos de depuración/filtración | Estado: ___ | Emisiones, vertidos | Mantenimiento preventivo |\n\nFACTORES EXTERNOS AMBIENTALES\n| Factor | Descripción | Aspecto relacionado | Implicación |\n|---|---|---|---|\n| Calidad agua subterránea | [Buena/Regular/Mala] | Vertidos, almacenamiento | Aumenta significatividad si mala |\n| Zonas protegidas próximas | Red Natura: ___ km | Todos | Criterio clave de significatividad |\n| Planes inspección CCAA | Campaña ___/año | Todos | Auditoría interna previa |\n| Cambios normativos previstos | ___ | Requisitos legales | Actualización registro legal |\n| Riesgos climáticos | Sequía/Inundación | Agua, emergencias | Plan contingencia hídrica |\n\nCONDICIONES AMBIENTALES DEL EMPLAZAMIENTO\n| Parámetro | Estado actual | Fuente | Implicación para significatividad |\n|---|---|---|---|\n| Calidad acuífero | | CHE/CHT/análisis propio | |\n| Calidad del aire | | Red AEMET/CCAA | |\n| Estado del suelo | | RD 9/2005, análisis | |\n| Biodiversidad | Natura 2000: Sí/No | MITECO | |\n| Riesgo inundación | Zona: A/B/C | SNCZI | |\n\n=====================================\n\nPLANTILLA 2: REGISTRO DE PARTES INTERESADAS AMBIENTALES\n\n| Parte interesada | Necesidades/expectativas ambientales | Gestión | Requisito legal | Revisión |\n|---|---|---|---|---|\n| Autoridad ambiental CCAA | Cumplimiento autorizaciones, VLE | Autorizaciones vigentes, autocontroles | Sí | Continua |\n| Confederación Hidrográfica | Autorización vertidos, caudales | Autorización vigente, análisis periódicos | Sí | Continua |\n| SEPRONA/Fiscalía MA | Cumplimiento normativa penal | No tener incumplimientos legales | Sí | Continua |\n| Vecinos/comunidad | No afectación por ruido, olores | Controles operacionales, emergencias | Parcial | Semestral |\n| Clientes ESG | ISO 14001, huella carbono | Mantener certificado, indicadores | No | Anual |\n| Inversores | Datos cuantitativos ESG, riesgos | Reporting ambiental, CSRD | Parcial | Anual |\n| Trabajadores | Entorno sin contaminación | Formación, EPIs ambientales | Sí (LPRL) | Anual |\n\n=====================================\n\nMODELO DE ALCANCE — TRES SECTORES\n\nINDUSTRIA QUÍMICA:\n"El SGA aplica a las actividades de síntesis, formulación y envasado de [productos] en las instalaciones de [ciudad], incluyendo el tratamiento de aguas residuales y la gestión de residuos peligrosos. Se ejerce influencia sobre los aspectos ambientales del transporte de materias peligrosas mediante criterios a proveedores logísticos."\n\nCONSTRUCCIÓN:\n"El SGA aplica a las actividades de construcción, rehabilitación y obra civil ejecutadas por [empresa] en todas las obras en las que actúa como contratista principal en el territorio nacional, incluyendo la gestión de residuos de construcción y demolición y el control de emisiones durante las obras."\n\nAGROALIMENTARIA:\n"El SGA aplica a las actividades de [transformación/envasado/distribución] de [producto] en las instalaciones de [ciudad] y [ciudad]. La organización considera la perspectiva de ciclo de vida en la identificación de aspectos ambientales, ejerciendo influencia sobre proveedores de materias primas mediante criterios de buenas prácticas ambientales."\n\n© Curso Consultor ISO 14001 — Todos los derechos reservados`;
+  const b=new Blob([t],{type:'text/plain;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='plantillas-contexto-iso14001.txt';a.click();URL.revokeObjectURL(u);}
+</script>
+</body>
+</html>
