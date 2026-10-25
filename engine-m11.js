@@ -116,7 +116,7 @@
 
     wrap.querySelector('#btnExportar').addEventListener('click', function () {
       var empresa = EMPRESAS.find(function (e) { return e.id === p.empresa; });
-      var lines = ['SISTEMA DE GESTIÓN AMBIENTAL — ISO 14001:2015', '='.repeat(50), ''];
+      var lines = ['SISTEMA DE GESTIÓN AMBIENTAL — ISO 14001', '='.repeat(50), ''];
       lines.push('Organización: ' + (empresa ? empresa.nombre : '(sin seleccionar)'));
       lines.push('Elaborado el: ' + new Date().toLocaleDateString('es-ES'));
       lines.push('');
@@ -171,7 +171,7 @@
       '<div style="font-size:12px;letter-spacing:2px;color:var(--acento);margin-bottom:18px;">ISOTECNIA</div>' +
       '<div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:8px;">Certifica que</div>' +
       '<div id="certNombrePreview" style="font-family:\'DM Serif Display\',serif;font-size:28px;margin-bottom:18px;">' + (p.nombreAlumno ? esc_(p.nombreAlumno) : 'Profesional en Gestión Ambiental') + '</div>' +
-      '<p style="font-size:14px;color:rgba(255,255,255,0.85);max-width:560px;margin:0 auto 18px;">ha completado satisfactoriamente el curso <strong style="color:#fff;">Gestor ISO 14001:2015 — Implementador de Sistemas de Gestión Ambiental</strong>, con proyecto final aprobado (' + p.score + '/10 puntos).</p>' +
+      '<p style="font-size:14px;color:rgba(255,255,255,0.85);max-width:560px;margin:0 auto 18px;">ha completado satisfactoriamente el curso <strong style="color:#fff;">Gestor ISO 14001 — Implementador de Sistemas de Gestión Ambiental</strong>, con proyecto final aprobado (' + p.score + '/10 puntos).</p>' +
       '<div style="font-size:12.5px;color:rgba(255,255,255,0.6);">11 módulos · 25 horas · 120 preguntas de evaluación · ' + fecha + '</div>' +
       '</div>' +
       '<div style="max-width:360px;margin:24px auto 0;">' +
@@ -247,7 +247,7 @@
     doc.setTextColor(50, 56, 66);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(12.5);
-    var body = 'por haber completado satisfactoriamente el curso "Gestor ISO 14001:2015 — Implementador de Sistemas de Gestión Ambiental",\ndemostrando competencia en el diseño, implantación, control operacional y auditoría de Sistemas\nde Gestión Ambiental conforme a los requisitos de la norma ISO 14001:2015.';
+    var body = 'por haber completado satisfactoriamente el curso "Gestor ISO 14001 — Implementador de Sistemas de Gestión Ambiental",\ndemostrando competencia en el diseño, implantación, control operacional y auditoría de Sistemas\nde Gestión Ambiental conforme a los requisitos de la norma ISO 14001:2015.';
     var by = 250;
     body.split('\n').forEach(function (l) { doc.text(l, cx, by, { align: 'center' }); by += 18; });
 
@@ -279,7 +279,7 @@
     doc.setFontSize(8.5);
     doc.setTextColor(150, 158, 170);
     doc.setFont('helvetica', 'normal');
-    doc.text('ISO 14001:2015 · 25 horas · 120 preguntas de evaluación · Proyecto final', cx, h - 58, { align: 'center' });
+    doc.text('ISO 14001:2015 y novedades de la 2026 · 25 horas · 120 preguntas de evaluación · Proyecto final', cx, h - 58, { align: 'center' });
 
     doc.save('certificado-iso14001-' + data.nombre.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '.pdf');
   }

@@ -5,7 +5,7 @@
 
   var TITLES = [
     'Fundamentos y Marco Legal Ambiental',
-    'La norma ISO 14001:2015',
+    'La norma ISO 14001: de la 2015 a la 2026',
     'Contexto y Partes Interesadas',
     'Aspectos e Impactos Ambientales',
     'Requisitos Legales y Evaluación del Cumplimiento',

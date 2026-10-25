@@ -13,9 +13,9 @@
 
   <organizations default="ORG-ISO14001">
     <organization identifier="ORG-ISO14001">
-      <title>Gestor ISO 14001:2015 — Implementador de SGA</title>
+      <title>Gestor ISO 14001 — Implementador de SGA</title>
       <item identifier="ITEM-CURSO" identifierref="RES-CURSO">
-        <title>Gestor ISO 14001:2015 — Implementador de SGA</title>
+        <title>Gestor ISO 14001 — Implementador de SGA</title>
         <adlcp:masteryscore>70</adlcp:masteryscore>
       </item>
     </organization>
